@@ -893,6 +893,122 @@
             font-size: 14px;
         }
 
+        .mcg-landing .pricing-block {
+            margin-top: 18px;
+        }
+
+        .mcg-landing .pricing-block h4 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .mcg-landing .plan-switch {
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            padding: 8px;
+            border-radius: 16px;
+            border: 1px solid rgba(27, 31, 22, 0.12);
+            background: rgba(27, 31, 22, 0.04);
+        }
+
+        .mcg-landing .plan-switch__btn {
+            border: 1px solid rgba(27, 31, 22, 0.16);
+            background: #ffffff;
+            color: var(--ink);
+            border-radius: 14px;
+            padding: 10px 12px;
+            display: grid;
+            gap: 6px;
+            text-align: left;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+            box-shadow: 0 6px 12px rgba(17, 25, 12, 0.04);
+        }
+
+        .mcg-landing .plan-switch__badge {
+            display: inline-flex;
+            width: fit-content;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(27, 31, 22, 0.08);
+            color: var(--ink-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 10px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .mcg-landing .plan-switch__name {
+            font-size: 18px;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .mcg-landing .plan-switch__btn small {
+            font-size: 12px;
+            color: var(--ink-muted);
+            font-weight: 600;
+            line-height: 1.2;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .mcg-landing .plan-switch__term::before {
+            content: "•";
+            margin-right: 2px;
+        }
+
+        .mcg-landing .plan-switch__btn:hover {
+            border-color: rgba(27, 31, 22, 0.34);
+            transform: translateY(-1px);
+        }
+
+        .mcg-landing .plan-switch__btn.is-active {
+            border-color: rgba(156, 226, 78, 0.8);
+            background: rgba(156, 226, 78, 0.18);
+            box-shadow: inset 0 0 0 1px rgba(156, 226, 78, 0.35), 0 8px 18px rgba(156, 226, 78, 0.24);
+        }
+
+        .mcg-landing .plan-switch__btn.is-active .plan-switch__badge {
+            background: rgba(156, 226, 78, 0.35);
+            color: #0b1206;
+        }
+
+        .mcg-landing .plan-switch__hint {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--ink-muted);
+        }
+
+        .mcg-landing .plan-fit {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(45, 181, 93, 0.35);
+            background: rgba(45, 181, 93, 0.1);
+        }
+
+        .mcg-landing .plan-fit__title {
+            margin-bottom: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+        }
+
+        .mcg-landing .plan-fit__text {
+            margin: 0;
+            color: #146735;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
         .mcg-landing .list {
             list-style: none;
             padding: 0;
@@ -932,58 +1048,6 @@
             margin-top: 14px;
             font-size: 13px;
             color: var(--ink-muted);
-        }
-
-        .mcg-landing .mini-panel {
-            margin-top: 14px;
-            padding: 14px 16px;
-            border-radius: 14px;
-            border: 1px solid rgba(255, 176, 32, 0.4);
-            background: rgba(255, 176, 32, 0.15);
-            font-size: 13px;
-            display: grid;
-            gap: 8px;
-        }
-
-        .mcg-landing .mini-panel__title {
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 0.08em;
-        }
-
-        .mcg-landing .mini-panel__note {
-            font-weight: 600;
-            color: #7a4a00;
-        }
-
-        .mcg-landing .mini-panel ul {
-            margin: 0;
-            padding-left: 18px;
-            display: grid;
-            gap: 6px;
-        }
-
-        .mcg-landing .checkbox {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 16px;
-            font-weight: 600;
-            padding: 14px 16px;
-            border-radius: 16px;
-            border: 1px solid rgba(27, 31, 22, 0.18);
-            background: #ffffff;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .mcg-landing .checkbox input {
-            width: 26px;
-            height: 26px;
-            accent-color: var(--accent-strong);
-            transform: scale(1.15);
-            cursor: pointer;
         }
 
         .mcg-landing .pricing__aside {
@@ -1098,9 +1162,32 @@
                 font-size: 18px;
             }
 
-            .mcg-landing .checkbox {
-                font-size: 13px;
-                padding: 10px 12px;
+            .mcg-landing .plan-switch {
+                gap: 6px;
+            }
+
+            .mcg-landing .plan-switch__btn {
+                padding: 8px 8px;
+                font-size: 12px;
+            }
+
+            .mcg-landing .plan-switch__name {
+                font-size: 15px;
+            }
+
+            .mcg-landing .plan-switch__btn small {
+                font-size: 10px;
+                display: block;
+            }
+
+            .mcg-landing .plan-switch__term {
+                display: block;
+                margin-top: 2px;
+            }
+
+            .mcg-landing .plan-switch__term::before {
+                content: "";
+                margin-right: 0;
             }
         }
     </style>
@@ -1155,9 +1242,9 @@
                             <a class="btn btn--secondary" href="#videos">Посмотреть видео</a>
                             <a class="btn btn--ghost" href="#instruction">Открыть инструкцию</a>
                         </div>
-                        <div class="alert alert--danger">
-                            <strong>Скрипт НЕ подключает платежные системы в Tilda.</strong>
-                            <span>Платёжки должны быть уже подключены в настройках Tilda.</span>
+                        <div class="alert alert--note">
+                            <strong>Работает с уже подключенными платежными системами в Tilda.</strong>
+                            <span>Скрипт отвечает за конвертацию сумм в корзине ST100, а не за подключение платёжек.</span>
                         </div>
                     </div>
                     <div class="hero__visual">
@@ -1240,7 +1327,7 @@
             <section class="section" id="usecases">
                 <div class="container">
                     <div class="section__head">
-                        <h2>Любые комбинации валют и платежных систем в мультивалюной корзине</h2>
+                        <h2>Любые комбинации валют и платежных систем в мультивалютной корзине</h2>
                         <p>Конвертация валют работает для локальных и международных проектов.</p>
                     </div>
                     <div class="card-grid">
@@ -1614,54 +1701,75 @@
             <section class="section section--alt" id="pricing">
                 <div class="container">
                     <div class="section__head">
-                        <h2>Доступ к конструктору</h2>
-                        <p>Единоразовая оплата — доступ к конструктору на 12 месяцев.</p>
+                        <h2>Выберите формат запуска</h2>
+                        <p>Три тарифа в одном блоке: переключите и сразу выберите подходящий формат.</p>
                     </div>
                     <div class="pricing">
                         <div class="pricing__card">
-                            <h3 class="pricing__title">Доступ к конструктору скрипта мультивалютности для корзины сайта
-                                на Tilda</h3>
-                            <div class="price">7 500 ₽</div>
-                            <div class="price__meta">Единоразовая оплата • 12 месяцев доступа</div>
-                            <div class="alert alert--note">Сгенерированный скрипт остаётся у вас и работает после
-                                окончания доступа к личному кабинету.</div>
-                            <ul class="list">
-                                <li>Конструктор генерации скрипта в личном кабинете</li>
-                                <li>Инструкция</li>
-                                <li>Сгенерированный код остаётся у вас (работает без личного кабинета)</li>
-                            </ul>
-                            <div class="divider"></div>
-                            <ul class="list list--negative">
-                                <li>Нет консультации</li>
-                                <li>Нет помощи в установке</li>
-                                <li>Нет установки кода от мастера</li>
-                                <li>Нет доработки под ваши задачи</li>
-                                <li>Нет подключения систем оплат</li>
-                            </ul>
-                            <div class="legal">Сгенерированный код работает в Tilda исключительно по инструкции.</div>
-                            <div class="mini-panel">
-                                <div class="mini-panel__title">Кому НЕ покупать</div>
-                                <ul>
-                                    <li>не готовы читать инструкцию/смотреть видео,</li>
-                                    <li>не имеете опыта установки кода в Tilda,</li>
-                                    <li>не работаете с Tilda профессионально.</li>
-                                </ul>
-                                <div class="mini-panel__note">Пожалуйста, не покупайте доступ. Выберите «Под ключ».
-                                </div>
+                            <h3 class="pricing__title">Тарифы внедрения мультивалютности для корзины Tilda</h3>
+                            <div class="plan-switch" id="plan-switch" role="tablist" aria-label="Выбор тарифа">
+                                <button class="plan-switch__btn is-active" type="button" data-plan="base"
+                                    aria-pressed="true">
+                                    <span class="plan-switch__badge">Тариф</span>
+                                    <span class="plan-switch__name">База</span>
+                                    <small><span class="plan-switch__price">7 500 ₽</span><span
+                                            class="plan-switch__term">моментально</span></small>
+                                </button>
+                                <button class="plan-switch__btn" type="button" data-plan="podkey" aria-pressed="false">
+                                    <span class="plan-switch__badge">Тариф</span>
+                                    <span class="plan-switch__name">Под ключ</span>
+                                    <small><span class="plan-switch__price">16 500 ₽</span><span class="plan-switch__term">до
+                                            3 дней</span></small>
+                                </button>
+                                <button class="plan-switch__btn" type="button" data-plan="custom" aria-pressed="false">
+                                    <span class="plan-switch__badge">Тариф</span>
+                                    <span class="plan-switch__name">Кастом</span>
+                                    <small><span class="plan-switch__price">35 500 ₽</span><span class="plan-switch__term">до
+                                            7 дней</span></small>
+                                </button>
                             </div>
-                            <label class="checkbox">
-                                <input type="checkbox" id="podkey-toggle">
-                                Нужна установка под ключ (16 500 ₽)
-                            </label>
+                            <div class="plan-switch__hint">Нажмите на тариф, чтобы переключить карточку.</div>
+                            <div class="price" id="pricing-price">7 500 ₽</div>
+                            <div class="price__meta" id="pricing-meta">
+                                Самостоятельная установка • 12 месяцев доступа к конструктору
+                            </div>
+                            <div class="alert alert--note" id="pricing-term">
+                                Доступ сразу после оплаты.
+                            </div>
+
+                            <div class="pricing-block">
+                                <h4>Что входит в тариф</h4>
+                                <ul class="list" id="pricing-includes">
+                                    <li>Конструктор генерации скрипта в личном кабинете</li>
+                                    <li>Инструкция + видео по установке</li>
+                                    <li>Ответы на вопросы по установке: до 3 коротких в течение 7 дней</li>
+                                    <li>Сгенерированный код остаётся у вас</li>
+                                </ul>
+                            </div>
+                            <div class="plan-fit">
+                                <div class="plan-fit__title">Этот тариф подходит для тех, кто</div>
+                                <p class="plan-fit__text" id="pricing-fit-text">хочет внедрить скрипт самостоятельно и
+                                    уже работает с T123/ST100 в Tilda.</p>
+                            </div>
+                            <div class="pricing-block">
+                                <h4>Что не входит</h4>
+                                <ul class="list list--negative" id="pricing-excludes">
+                                    <li>Подключение платежных систем в кабинете Tilda</li>
+                                    <li>Кастомная разработка новой логики под нестандартный процесс оплаты</li>
+                                </ul>
+                            </div>
+                            <div class="legal" id="pricing-legal">Сгенерированный код работает в Tilda по инструкции.
+                            </div>
                             <a class="btn btn--primary btn--wide" id="pricing-cta"
-                                data-default-text="Купить доступ (12 месяцев)"
-                                data-default-href="#order:«Доступ к конструктору мультивалютного скрипта для Tilda (12 месяцев)» + инструкция=7500:::image=https://static.tildacdn.com/stor6236-6634-4265-a334-376336303534/f3e7521cdb36b7a3c380a3dbb04fb8f5.png"
-                                data-podkey-text="Установка под ключ" data-podkey-href="#popup:podkey"
-                                href="#order:«Доступ к конструктору мультивалютного скрипта для Tilda (12 месяцев)» + инструкция=...">Купить
-                                доступ (12 месяцев)</a>
-                            <div class="alert alert--danger"><strong>Скрипт НЕ подключает платежные системы в
-                                    Tilda.</strong><span>В стоимость «Под ключ» подключение платежных систем НЕ
-                                    входит.</span>
+                                data-base-text="Купить тариф «База»"
+                                data-base-href="#order:«Доступ к конструктору мультивалютного скрипта для Tilda (12 месяцев)» + инструкция=7500:::image=https://static.tildacdn.com/stor6236-6634-4265-a334-376336303534/f3e7521cdb36b7a3c380a3dbb04fb8f5.png"
+                                data-podkey-text="Выбрать тариф «Под ключ»" data-podkey-href="#popup:podkey"
+                                data-custom-text="Заказать кастомизацию" data-custom-href="#popup:custom"
+                                href="#order:«Доступ к конструктору мультивалютного скрипта для Tilda (12 месяцев)» + инструкция=7500:::image=https://static.tildacdn.com/stor6236-6634-4265-a334-376336303534/f3e7521cdb36b7a3c380a3dbb04fb8f5.png">Купить
+                                тариф «База»</a>
+                            <div class="alert alert--note"><strong>Важно:</strong> скрипт не подключает платежные
+                                системы в Tilda.<span>Во всех тарифах платёжки подключаются в вашем кабинете Tilda
+                                    отдельно.</span>
                             </div>
                         </div>
                     </div>
@@ -1671,21 +1779,18 @@
             <section class="section" id="cons">
                 <div class="container">
                     <div class="section__head">
-                        <h2>Какие нюансы использования?</h2>
-                        <p>Обязательно ознакомиться перед покупкой.</p>
+                        <h2>Ключевые нюансы и ограничения</h2>
+                        <p>Проверьте эти условия до покупки, чтобы выбрать подходящий формат внедрения.</p>
                     </div>
                     <div class="accordion" data-accordion="">
                         <div class="accordion-item">
                             <button class="accordion-trigger" type="button">1. Резервирование товаров при конвертации
                                 валют</button>
                             <div class="accordion-panel">
-                                <p>
-                                    Чтобы реализовать мультивалютность, пришлось обойти ограничения Tilda, которые не
-                                    позволяют менять стоимость товара
-                                    при конвертации. Это не официальный плагин, а скрипт. Он работает, но имеет важный
-                                    нюанс для второстепенных валют
-                                    и способов оплат.
-                                </p>
+                                <h4>Когда важно</h4>
+                                <p>Если у вас товары с ограниченным остатком и критично автоматическое резервирование в
+                                    каждой валюте.</p>
+                                <h4>Что происходит</h4>
                                 <div class="alert alert--warning">
                                     При оплате через конвертированные валюты <strong>не передается ID товара в
                                         Tilda</strong>.
@@ -1699,11 +1804,10 @@
                                     этой валютой, резервирование и списание количества товара продолжают работать
                                     корректно.
                                 </p>
-                                <div class="alert alert--danger">
-                                    Если для вас принципиально резервирование товара при оплате в любой валюте — это
-                                    решение вам не подходит.
-                                    Оплачивая доступ к конструктору, вы подтверждаете, что ознакомились с этим нюансом и
-                                    не будете иметь претензий.
+                                <h4>Как обойти</h4>
+                                <div class="alert alert--note">
+                                    Если вам нужно строгое резервирование в любой валюте, используйте основную валюту для
+                                    критичных товаров или выбирайте отдельную кастомную реализацию под ваш процесс.
                                 </div>
                                 <p>
                                     Для заказов, где резервирование не сработало, в списке заказов будет отображаться
@@ -1741,20 +1845,19 @@
                             <button class="accordion-trigger" type="button">2. Наличные и Безналичный расчет для
                                 второстепенных валют</button>
                             <div class="accordion-panel">
-                                <p>
-                                    Способы оплаты <strong>Наличные</strong> и <strong>Безналичный расчет</strong> не
-                                    имеют фактического процессинга —
-                                    это способы «эмуляции» оплаты (иногда используются для кастомных интеграций,
-                                    например «Тбанк рассрочка»).
-                                </p>
+                                <h4>Когда важно</h4>
+                                <p>Если для второстепенных валют вы используете способы оплаты <strong>Наличные</strong>
+                                    или <strong>Безналичный расчет</strong>.</p>
+                                <h4>Что происходит</h4>
                                 <div class="alert alert--warning">
                                     Если установить эти способы для <strong>второстепенных конвертируемых
                                         валют</strong>,
                                     то в заказах Tilda суммы будут отображаться в <strong>основной валюте
-                                        сайта</strong>, а не в фактической.
+                                    сайта</strong>, а не в фактической.
                                     Пользователь в корзине видит правильную валюту — проблема только визуальная в
                                     админке.
                                 </div>
+                                <h4>Как обойти</h4>
                                 <p>
                                     Для ориентира скрипт передает дополнительные параметры <strong>currency</strong> и
                                     <strong>currency_txt</strong>
@@ -1791,16 +1894,16 @@
                             <button class="accordion-trigger" type="button">3. «TBank рассрочка» и
                                 мультивалютность</button>
                             <div class="accordion-panel">
-                                <p>
-                                    «TBank рассрочка» подключается через способ <strong>Безналичный расчет</strong> и
-                                    заменяет стандартную кнопку оплаты
-                                    на фирменную кнопку TBank.
-                                </p>
+                                <h4>Когда важно</h4>
+                                <p>Если в проекте используется «TBank рассрочка» через способ
+                                    <strong>Безналичный расчет</strong>.</p>
+                                <h4>Что происходит</h4>
                                 <div class="alert alert--warning">
                                     Если использовать рубли для «TBank рассрочка» как <strong>второстепенную
                                         конвертируемую валюту</strong>,
                                     конвертация для этого способа работать <strong>не будет</strong>.
                                 </div>
+                                <h4>Как обойти</h4>
                                 <p>
                                     Решение: установить <strong>рубли как основную валюту</strong> в настройках Tilda и
                                     использовать «TBank рассрочка»
@@ -1826,14 +1929,19 @@
                             <button class="accordion-trigger" type="button">4. Режим «Оформление заказа в несколько
                                 этапов»</button>
                             <div class="accordion-panel">
-                                <p>В настройках корзины <strong>ST100</strong> не должна быть включена опция
-                                    <strong>«Оформление заказа в несколько этапов»</strong>.</p>
-                                <div class="alert alert--warning">
+                                <h4>Когда важно</h4>
+                                <p>Если у вас включен режим <strong>«Оформление заказа в несколько этапов»</strong> в
+                                    корзине ST100.</p>
+                                <h4>Что происходит</h4>
+                                <div class="alert alert--danger">
                                     Этот режим меняет внешний вид корзины: покупатель сначала подтверждает список
                                     товаров,
                                     а затем заполняет контактные данные на отдельном экране. <strong>В этом режиме
                                         скрипт мультивалютности не работает.</strong>
                                 </div>
+                                <h4>Как обойти</h4>
+                                <p>Отключите этот режим в настройках ST100 и протестируйте переключение валют повторно.
+                                </p>
                                 <div class="screen-grid">
                                     <a class="screen"
                                         href="https://static.tildacdn.com/tild3737-3037-4262-b231-626436666265/withoutCheckbox.png"
@@ -1871,6 +1979,21 @@
                             <div class="accordion-panel">Да, работа гарантируется только с корзиной ST100.</div>
                         </div>
                         <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Что входит в базовый Q&A?</button>
+                            <div class="accordion-panel">В базовом формате включены ответы на 3 коротких по
+                                установке в течение 7 дней после покупки. Без созвонов и без доработок кода.</div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Что не входит даже в «Под ключ»?</button>
+                            <div class="accordion-panel">Подключение платежных систем в кабинете Tilda и разработка новой
+                                кастомной логики оплаты. Это отдельные услуги.</div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Сколько времени занимает «Под ключ»?</button>
+                            <div class="accordion-panel">Обычно 1-3 рабочих дня после получения доступов и данных по
+                                проекту. Срок зависит от структуры сайта и количества сценариев оплаты.</div>
+                        </div>
+                        <div class="accordion-item">
                             <button class="accordion-trigger" type="button">На какой срок даётся доступ к
                                 конструктору?</button>
                             <div class="accordion-panel">Доступ к личному кабинету и конструктору — 12 месяцев. При этом
@@ -1889,7 +2012,7 @@
                         </div>
                         <div class="accordion-item">
                             <button class="accordion-trigger" type="button">Если нужна кастомная логика?</button>
-                            <div class="accordion-panel">Это отдельная услуга — выбирайте «под ключ».</div>
+                            <div class="accordion-panel">Это тариф «Кастом».</div>
                         </div>
                     </div>
                 </div>
@@ -1916,9 +2039,18 @@
                 platform: "youtube",
                 currencies: [],
                 filtered: [],
+                pricingMode: "base",
             };
 
             const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+            function trackEvent(name, payload = {}) {
+                try {
+                    if (Array.isArray(window.dataLayer)) {
+                        window.dataLayer.push({ event: name, ...payload });
+                    }
+                } catch (e) { }
+            }
 
             function setVideoPlatform(platform) {
                 state.platform = platform;
@@ -2065,23 +2197,135 @@
                 }
             }
 
-            function setupPricingToggle() {
-                const toggle = document.getElementById("podkey-toggle");
+            function setupPricingMode() {
                 const cta = document.getElementById("pricing-cta");
-                if (!toggle || !cta) return;
+                const priceEl = document.getElementById("pricing-price");
+                const metaEl = document.getElementById("pricing-meta");
+                const termEl = document.getElementById("pricing-term");
+                const fitEl = document.getElementById("pricing-fit-text");
+                const includesEl = document.getElementById("pricing-includes");
+                const excludesEl = document.getElementById("pricing-excludes");
+                const legalEl = document.getElementById("pricing-legal");
+                const buttons = $$("#plan-switch .plan-switch__btn[data-plan]");
+                if (!cta || !buttons.length) return;
 
-                const update = () => {
-                    if (toggle.checked) {
-                        cta.textContent = cta.dataset.podkeyText;
-                        cta.setAttribute("href", cta.dataset.podkeyHref);
-                    } else {
-                        cta.textContent = cta.dataset.defaultText;
-                        cta.setAttribute("href", cta.dataset.defaultHref);
+                const plans = {
+                    base: {
+                        price: "7 500 ₽",
+                        meta: "Самостоятельная установка • 12 месяцев доступа к конструктору",
+                        term: "Доступ сразу после оплаты.",
+                        fit: "хочет внедрить скрипт самостоятельно и уже работает с T123/ST100 в Tilda.",
+                        includes: [
+                            "Конструктор генерации скрипта в личном кабинете",
+                            "Инструкция + видео по установке",
+                            "Ответы на вопросы по установке: до 3 коротких в течение 7 дней",
+                            "Сгенерированный код остаётся у вас",
+                        ],
+                        excludes: [
+                            "Подключение платежных систем в кабинете Tilda",
+                            "Установка и настройка под ключ",
+                            "Кастомные доработки под новые сценарии",
+                        ],
+                        legal: "Сгенерированный код работает в Tilda по инструкции.",
+                        ctaTextKey: "baseText",
+                        ctaHrefKey: "baseHref",
+                        clickEvent: "mv_click_buy_base",
+                    },
+                    podkey: {
+                        price: "16 500 ₽",
+                        meta: "Установка и настройка под ключ",
+                        term: "Установка под ключ в течение 3 дней.",
+                        fit: "хочет быстрое внедрение без самостоятельной технической настройки.",
+                        includes: [
+                            "Все возможности тарифа «База»",
+                            "Установка и настройка скрипта на вашем проекте",
+                            "Проверка ключевых сценариев оплаты и переключения валют",
+                            "Короткие ответы по запуску после установки",
+                        ],
+                        excludes: [
+                            "Подключение платежных систем в кабинете Tilda",
+                            "Кастомная разработка новой логики оплаты",
+                        ],
+                        legal: "Тариф «Под ключ» включает установку и настройку без кастомной разработки.",
+                        ctaTextKey: "podkeyText",
+                        ctaHrefKey: "podkeyHref",
+                        clickEvent: "mv_click_buy_podkey",
+                    },
+                    custom: {
+                        price: "35 500 ₽",
+                        meta: "Кастомные доработки под ваш сценарий",
+                        term: "Кастомизация в течение 7 дней.",
+                        fit: "нужна нестандартная логика оплаты или доработки под конкретный бизнес-процесс.",
+                        includes: [
+                            "Все возможности тарифа «Под ключ»",
+                            "Кастомные доработки под согласованное ТЗ",
+                            "Тестирование доработок перед запуском",
+                            "Передача результата и инструкция по использованию",
+                        ],
+                        excludes: [
+                            "Подключение платежных систем в кабинете Tilda",
+                        ],
+                        legal: "Для «Кастом» объём и границы работ фиксируются по согласованному ТЗ.",
+                        ctaTextKey: "customText",
+                        ctaHrefKey: "customHref",
+                        clickEvent: "mv_click_buy_custom",
+                    },
+                };
+
+                const renderList = (target, items) => {
+                    if (!target) return;
+                    target.innerHTML = "";
+                    items.forEach((item) => {
+                        const li = document.createElement("li");
+                        li.textContent = item;
+                        target.appendChild(li);
+                    });
+                };
+
+                const setPlan = (planId, emitToggleEvent = false) => {
+                    const plan = plans[planId] || plans.base;
+                    state.pricingMode = plans[planId] ? planId : "base";
+
+                    buttons.forEach((btn) => {
+                        const isActive = btn.dataset.plan === state.pricingMode;
+                        btn.classList.toggle("is-active", isActive);
+                        btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+                    });
+
+                    if (priceEl) priceEl.textContent = plan.price;
+                    if (metaEl) metaEl.textContent = plan.meta;
+                    if (termEl) termEl.textContent = plan.term;
+                    if (fitEl) fitEl.textContent = plan.fit;
+                    if (legalEl) legalEl.textContent = plan.legal;
+
+                    renderList(includesEl, plan.includes);
+                    renderList(excludesEl, plan.excludes);
+
+                    if (cta.dataset[plan.ctaTextKey]) {
+                        cta.textContent = cta.dataset[plan.ctaTextKey];
+                    }
+                    if (cta.dataset[plan.ctaHrefKey]) {
+                        cta.setAttribute("href", cta.dataset[plan.ctaHrefKey]);
+                    }
+
+                    if (emitToggleEvent) {
+                        trackEvent("mv_toggle_plan", { mode: state.pricingMode });
+                        if (state.pricingMode === "podkey") {
+                            trackEvent("mv_toggle_podkey", { mode: state.pricingMode });
+                        }
                     }
                 };
 
-                toggle.addEventListener("change", update);
-                update();
+                buttons.forEach((btn) => {
+                    btn.addEventListener("click", () => setPlan(btn.dataset.plan, true));
+                });
+
+                cta.addEventListener("click", () => {
+                    const plan = plans[state.pricingMode] || plans.base;
+                    trackEvent(plan.clickEvent, { mode: state.pricingMode });
+                });
+
+                setPlan(state.pricingMode || "base");
             }
 
             function setupAccordion() {
@@ -2108,7 +2352,7 @@
                 setupCurrencySearch();
                 setupCurrencyCopy();
                 loadCurrencies();
-                setupPricingToggle();
+                setupPricingMode();
                 setupAccordion();
             });
 
