@@ -1,0 +1,1604 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Конструктор мультивалютного скрипта</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #f8fafc;
+      --bg-2: #e2f4ff;
+      --card: #ffffff;
+      --ink: #1f2937;
+      --muted: #5b667a;
+      --accent: #0f766e;
+      --accent-dark: #0b5c57;
+      --border: #e2e8f0;
+      --danger: #c2410c;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at top left, var(--bg-2), transparent 50%),
+        linear-gradient(135deg, var(--bg-1), #fdf2f8 70%);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 72px;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      padding: 22px 22px 24px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .card.full {
+      grid-column: 1 / -1;
+    }
+
+    .card h2 {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .label-with-faq,
+    .header-with-faq {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .faq-popup-btn {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--ink);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 2px solid rgba(15, 118, 110, 0.25);
+      border-color: var(--accent);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 280px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: minmax(150px, 1.15fr) minmax(110px, 0.9fr) minmax(110px, 0.75fr) minmax(120px, 0.8fr) minmax(140px, 0.95fr) minmax(140px, 0.9fr) 90px;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px dashed #e8edf5;
+    }
+
+    .faq {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      margin-left: 6px;
+    }
+
+    .faq-btn {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .faq-tip {
+      position: absolute;
+      top: 26px;
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      min-width: 220px;
+      max-width: 280px;
+      background: #111827;
+      color: #fff;
+      font-size: 12px;
+      line-height: 1.4;
+      padding: 10px 12px;
+      border-radius: 10px;
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      z-index: 10;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .faq:hover .faq-tip,
+    .faq:focus-within .faq-tip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+    .row.header {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+
+    .row input {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+
+    .row .btn.ghost {
+      font-size: 12px;
+      padding: 6px 10px;
+      justify-self: end;
+      white-space: nowrap;
+    }
+
+    .row.header div {
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--accent);
+      color: #fff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 18px rgba(15, 118, 110, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px rgba(15, 118, 110, 0.25);
+    }
+
+    .btn.secondary {
+      background: #e2e8f0;
+      color: var(--ink);
+      box-shadow: none;
+    }
+
+    .btn.ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      box-shadow: none;
+      padding: 8px 12px;
+    }
+
+    .btn[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 12px 0 0;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .quotes {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .quotes.is-hidden {
+      display: none;
+    }
+
+    .quotes-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+
+    .search-field {
+      position: relative;
+    }
+
+    .search-field .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: #94a3b8;
+      pointer-events: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-field .search-input {
+      height: 34px;
+      padding-left: 34px;
+      font-size: 13px;
+    }
+
+    .quotes-status {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .quotes-list {
+      height: 220px;
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      padding: 6px 8px;
+    }
+
+    .quote-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 6px 4px;
+      border-bottom: 1px dashed #eef2f6;
+      font-size: 13px;
+    }
+
+    .quote-item:last-child {
+      border-bottom: none;
+    }
+
+    .quote-code {
+      font-weight: 600;
+    }
+
+    .quote-name {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .quote-value {
+      font-weight: 600;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(15, 23, 42, 0.55);
+      z-index: 1000;
+    }
+
+    .modal.is-open {
+      display: flex;
+    }
+
+    .modal-content {
+      width: min(760px, 100%);
+      max-height: 85vh;
+      overflow: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px 18px 22px;
+      box-shadow: 0 24px 48px rgba(15, 23, 42, 0.2);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: none;
+      background: #f1f5f9;
+      color: var(--muted);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .modal-media {
+      margin-bottom: 14px;
+    }
+
+    .modal-media img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .modal-media iframe {
+      width: 100%;
+      height: 360px;
+      border: none;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .modal-text {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .status {
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .status.success {
+      color: var(--accent-dark);
+    }
+
+    @media (max-width: 960px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .row.header {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Конструктор мультивалютного скрипта</h1>
+      <p>Настройте базовую валюту, платежные системы и режим курсов. Получите готовый скрипт для вставки в Tilda.</p>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>Базовая валюта</h2>
+        <div class="field">
+          <label for="base-code" class="label-with-faq">
+            Код базовой валюты
+            <button class="faq-popup-btn" type="button" aria-label="Где найти код базовой валюты?" data-media-type="image" data-media-src="https://static.tildacdn.com/tild3336-6338-4431-b462-323761386132/1_codeBase.png" data-text="Перейдите в настройках Tilda в раздел Платежные системы и найдите код базовой валюты.">?</button>
+          </label>
+          <input id="base-code" list="currency-codes" placeholder="RUB">
+        </div>
+        <div class="field">
+          <label for="base-symbol" class="label-with-faq">
+            Символ базовой валюты
+            <button class="faq-popup-btn" type="button" aria-label="Где найти символ базовой валюты?" data-media-type="image" data-media-src="https://static.tildacdn.com/tild3634-3930-4161-b531-366634393161/2_znakBase.png" data-text="Перейдите в настройках Tilda в раздел Платежные системы и найдите символ базовой валюты.">?</button>
+          </label>
+          <input id="base-symbol" placeholder="₽ или RUB">
+        </div>
+        <div class="field">
+          <label for="base-side" class="label-with-faq">
+            Сторона символа
+            <button class="faq-popup-btn" type="button" aria-label="Где найти сторону символа?" data-media-type="image" data-media-src="https://static.tildacdn.com/tild3437-3931-4837-b462-353537663961/3_Base.png" data-text="Перейдите в настройках Tilda в раздел Платежные системы и найдите сторону символа. Определяет расположение символа валюты справа или слева.">?</button>
+          </label>
+          <select id="base-side">
+            <option value="l">Слева</option>
+            <option value="r" selected>Справа</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="base-system" class="label-with-faq">
+            ID основной платежной системы
+            <button class="faq-popup-btn" type="button" aria-label="Как найти ID основной платежной системы?" data-media-type="video" data-media-src="https://rutube.ru/play/embed/f7942eb5dd3afbf3ab7193387b2f73e6" data-text="Посмотрите видео и повторите действия для первого в списке способа оплаты в вашей корзине, чтобы скопировать ID основной платежной системы.">?</button>
+          </label>
+          <input id="base-system" placeholder="yakassa">
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Режим курса</h2>
+        <div class="radio-group">
+          <label><input type="radio" name="rate-mode" value="manual" checked> Ручной</label>
+          <label><input type="radio" name="rate-mode" value="dynamic"> Автоматический</label>
+        </div>
+        <p class="note" id="rate-note">Устанавливайте курс валюты самостоятельно.</p>
+        <div class="quotes" id="quotes-block">
+          <div class="quotes-grid">
+            <div class="field">
+              <label for="quote-search">Поиск котировки</label>
+              <div class="search-field">
+                <span class="search-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <line x1="20" y1="20" x2="16.5" y2="16.5"></line>
+                  </svg>
+                </span>
+                <input id="quote-search" class="search-input" placeholder="USD">
+              </div>
+            </div>
+          </div>
+          <div class="quotes-status" id="quote-status">Укажите код базовой валюты, чтобы загрузить котировки.</div>
+          <div class="quotes-list" id="quote-list"></div>
+        </div>
+      </section>
+
+      <section class="card full" id="systems-card">
+        <h2>Платежные системы</h2>
+        <div class="row header">
+          <div class="header-with-faq">
+            ID системы
+            <button class="faq-popup-btn" type="button" aria-label="Как найти ID платежной системы?" data-media-type="video" data-media-src="https://rutube.ru/play/embed/fc05a0b6cf563898745f6054334f779b" data-text="Посмотрите видео и повторите действия для второй, третьей и остальных платежных систем (если имеются), чтобы скопировать ID платежной системы.">?</button>
+          </div>
+          <div>Валюта</div>
+          <div>Символ</div>
+          <div class="header-with-faq">
+            Точность
+            <span class="faq">
+              <button class="faq-btn" type="button" aria-label="Что такое точность?">?</button>
+              <span class="faq-tip">Точность — это количество цифр после запятой (десятичных). Например, 2 означает 10.50</span>
+            </span>
+          </div>
+          <div class="col-rate">
+            <span id="rate-header-text">Курс валюты</span>
+            <span class="faq">
+              <button class="faq-btn" type="button" aria-label="Что такое резервный курс?">?</button>
+              <span class="faq-tip" id="rate-faq-text">Введите нужный вам курс валюты, по нему будет рассчитываться конвертация.</span>
+            </span>
+          </div>
+          <div>
+            Комиссия, %
+            <span class="faq">
+              <button class="faq-btn" type="button" aria-label="Что такое комиссия?">?</button>
+              <span class="faq-tip">Вы можете задать процент комиссии, и курс будет увеличен на этот процент. Например, +5% означает, что курс станет на 5% выше. Если комиссия не нужна, оставьте поле пустым.</span>
+            </span>
+          </div>
+          <div></div>
+        </div>
+        <div id="systems"></div>
+        <button class="btn secondary" id="add-system" type="button">Добавить систему</button>
+        <p class="note">Если валюта совпадает с базовой, она считается основной и исключается из конвертации.</p>
+      </section>
+
+      <section class="card full">
+        <h2>Результат</h2>
+        <div class="actions">
+          <button class="btn" id="generate" type="button">Сгенерировать скрипт</button>
+          <button class="btn secondary" id="copy" type="button" disabled>Скопировать</button>
+        </div>
+        <div class="status" id="status"></div>
+        <textarea id="output" placeholder="Здесь появится сгенерированный скрипт..."></textarea>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="faq-modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" type="button" aria-label="Закрыть">×</button>
+      <div class="modal-media" id="modal-media"></div>
+      <div class="modal-text" id="modal-text"></div>
+    </div>
+  </div>
+
+  <datalist id="currency-codes"></datalist>
+
+  <script>
+    (function () {
+      const currencyListUrl = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json';
+      const fallbackCurrencies = {
+        USD: 'Доллар США',
+        EUR: 'Евро',
+        RUB: 'Российский рубль',
+        GBP: 'Фунт стерлингов',
+        KZT: 'Казахстанский тенге',
+        UAH: 'Украинская гривна',
+        BYN: 'Белорусский рубль',
+        PLN: 'Польский злотый',
+        TRY: 'Турецкая лира',
+        AED: 'Дирхам ОАЭ',
+        CNY: 'Китайский юань',
+        JPY: 'Японская иена'
+      };
+
+      const baseCodeInput = document.getElementById('base-code');
+      const baseSymbolInput = document.getElementById('base-symbol');
+      const baseSideSelect = document.getElementById('base-side');
+      const baseSystemInput = document.getElementById('base-system');
+      const systemsContainer = document.getElementById('systems');
+      const systemsCard = document.getElementById('systems-card');
+      const addSystemBtn = document.getElementById('add-system');
+      const generateBtn = document.getElementById('generate');
+      const copyBtn = document.getElementById('copy');
+      const outputArea = document.getElementById('output');
+      const statusEl = document.getElementById('status');
+      const currencyList = document.getElementById('currency-codes');
+      const rateNote = document.getElementById('rate-note');
+      const rateHeaderText = document.getElementById('rate-header-text');
+      const rateFaqText = document.getElementById('rate-faq-text');
+      const quoteSearchInput = document.getElementById('quote-search');
+      const quoteStatus = document.getElementById('quote-status');
+      const quoteList = document.getElementById('quote-list');
+      const quotesBlock = document.getElementById('quotes-block');
+      const modal = document.getElementById('faq-modal');
+      const modalMedia = document.getElementById('modal-media');
+      const modalText = document.getElementById('modal-text');
+      const modalClose = modal ? modal.querySelector('.modal-close') : null;
+
+      let currencyNames = {};
+      let quotesData = null;
+      let quotesBase = '';
+      let quotesRequestId = 0;
+      let quoteTimer = null;
+
+      function setStatus(message, tone) {
+        statusEl.textContent = message || '';
+        statusEl.className = 'status' + (tone ? ' ' + tone : '');
+      }
+
+      function getCurrencyDefaults(code) {
+        const upper = code.toUpperCase();
+        try {
+          const formatter = new Intl.NumberFormat('en', { style: 'currency', currency: upper });
+          const parts = formatter.formatToParts(1.23);
+          const symbolPart = parts.find(part => part.type === 'currency');
+          const symbol = symbolPart ? symbolPart.value : upper;
+          const precision = formatter.resolvedOptions().maximumFractionDigits;
+          return { symbol, precision };
+        } catch (err) {
+          return { symbol: upper, precision: 2 };
+        }
+      }
+
+      function sanitizeTargetCart(value) {
+        const clean = value.toLowerCase().replace(/[^a-z0-9_]+/g, '_').replace(/^_+|_+$/g, '');
+        return clean || 'system';
+      }
+
+      function buildCurrencyList(list) {
+        currencyNames = {};
+        currencyList.innerHTML = '';
+        Object.keys(list)
+          .sort()
+          .forEach(code => {
+            const upper = code.toUpperCase();
+            currencyNames[upper] = list[code] || upper;
+            const option = document.createElement('option');
+            option.value = upper;
+            option.label = currencyNames[upper];
+            currencyList.appendChild(option);
+          });
+      }
+
+      function fetchCurrencyList() {
+        return fetch(currencyListUrl)
+          .then(response => response.json())
+          .then(data => {
+            if (data && typeof data === 'object') {
+              buildCurrencyList(data);
+            } else {
+              buildCurrencyList(fallbackCurrencies);
+            }
+            renderQuotes();
+          })
+          .catch(() => {
+            buildCurrencyList(fallbackCurrencies);
+            renderQuotes();
+          });
+      }
+
+      function formatRate(value) {
+        const num = Number(value);
+        if (!Number.isFinite(num)) return '-';
+        const abs = Math.abs(num);
+        const digits = abs >= 1 ? 2 : 6;
+        return num.toFixed(digits).replace(/\.?0+$/, '');
+      }
+
+      function renderQuotes() {
+        if (!quoteList || !quoteStatus) return;
+        if (!quotesData) {
+          quoteList.innerHTML = '';
+          return;
+        }
+        const query = (quoteSearchInput ? quoteSearchInput.value.trim().toUpperCase() : '');
+        const entries = Object.keys(quotesData).map(code => ({
+          code,
+          rate: quotesData[code]
+        })).filter(item => {
+          if (!query) return true;
+          const name = currencyNames[item.code] || '';
+          return item.code.includes(query) || name.toUpperCase().includes(query);
+        });
+
+        if (!entries.length) {
+          quoteList.innerHTML = '<div class="quote-item">Ничего не найдено.</div>';
+          return;
+        }
+
+        quoteList.innerHTML = entries.map(item => {
+          const name = currencyNames[item.code] ? '<div class="quote-name">' + currencyNames[item.code] + '</div>' : '';
+          const inverted = item.rate ? (1 / item.rate) : 0;
+          const value = quotesBase ? '1 ' + item.code + ' = ' + formatRate(inverted) + ' ' + quotesBase : formatRate(inverted);
+          return '<div class="quote-item">' +
+            '<div><div class="quote-code">' + item.code + '</div>' + name + '</div>' +
+            '<div class="quote-value">' + value + '</div>' +
+            '</div>';
+        }).join('');
+      }
+
+      function loadQuotes(baseCode) {
+        const base = baseCode.toLowerCase();
+        if (!base) {
+          quotesData = null;
+          quotesBase = '';
+          quoteStatus.textContent = 'Укажите код базовой валюты, чтобы загрузить котировки.';
+          quoteList.innerHTML = '';
+          return;
+        }
+
+        const requestId = ++quotesRequestId;
+        quotesBase = baseCode.toUpperCase();
+        quoteStatus.textContent = 'Загрузка котировок для ' + quotesBase + '...';
+        quoteList.innerHTML = '';
+
+        const url = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/' + base + '.json';
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            if (requestId !== quotesRequestId) return;
+            const table = data && data[base];
+            if (!table) throw new Error('No data');
+            quotesData = {};
+            Object.keys(table).forEach(code => {
+              quotesData[code.toUpperCase()] = table[code];
+            });
+            quoteStatus.textContent = 'Котировки относительно ' + quotesBase + '.';
+            renderQuotes();
+          })
+          .catch(() => {
+            if (requestId !== quotesRequestId) return;
+            quotesData = null;
+            quoteStatus.textContent = 'Не удалось загрузить котировки. Проверьте код валюты.';
+            quoteList.innerHTML = '';
+          });
+      }
+
+      function attachCurrencyAutoFill(codeInput, symbolInput, precisionInput) {
+        codeInput.addEventListener('input', () => {
+          const code = codeInput.value.trim().toUpperCase();
+          if (!code) return;
+          const defaults = getCurrencyDefaults(code);
+          if (!symbolInput.dataset.userEdited || symbolInput.value.trim() === '') {
+            symbolInput.value = defaults.symbol;
+          }
+          if (precisionInput && (!precisionInput.dataset.userEdited || precisionInput.value.trim() === '')) {
+            precisionInput.value = String(defaults.precision);
+          }
+        });
+      }
+
+      function createSystemRow(prefill) {
+        const row = document.createElement('div');
+        row.className = 'row system-row';
+
+        const sysId = document.createElement('input');
+        sysId.placeholder = 'paypal';
+        sysId.className = 'sys-id';
+
+        const currency = document.createElement('input');
+        currency.placeholder = 'USD';
+        currency.setAttribute('list', 'currency-codes');
+        currency.className = 'sys-currency';
+
+        const symbol = document.createElement('input');
+        symbol.placeholder = '$';
+        symbol.className = 'sys-symbol';
+
+        const precision = document.createElement('input');
+        precision.type = 'number';
+        precision.min = '0';
+        precision.max = '6';
+        precision.placeholder = '2';
+        precision.className = 'sys-precision';
+
+        const rate = document.createElement('input');
+        rate.type = 'number';
+        rate.min = '0';
+        rate.step = 'any';
+        rate.placeholder = '98.74';
+        rate.className = 'sys-rate';
+
+        const fee = document.createElement('input');
+        fee.type = 'number';
+        fee.step = 'any';
+        fee.placeholder = '5';
+        fee.className = 'sys-fee';
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'btn ghost';
+        removeBtn.textContent = 'Удалить';
+        removeBtn.addEventListener('click', () => {
+          row.remove();
+        });
+
+        symbol.addEventListener('input', () => {
+          symbol.dataset.userEdited = 'true';
+        });
+        precision.addEventListener('input', () => {
+          precision.dataset.userEdited = 'true';
+        });
+
+        attachCurrencyAutoFill(currency, symbol, precision);
+
+        if (prefill) {
+          sysId.value = prefill.system || '';
+          currency.value = prefill.currency || '';
+          symbol.value = prefill.symbol || '';
+          precision.value = prefill.precision || '';
+          rate.value = prefill.rate || '';
+          fee.value = prefill.fee || '';
+        }
+
+        row.appendChild(sysId);
+        row.appendChild(currency);
+        row.appendChild(symbol);
+        row.appendChild(precision);
+        rate.classList.add('col-rate');
+
+        row.appendChild(rate);
+        row.appendChild(fee);
+        row.appendChild(removeBtn);
+
+        return row;
+      }
+
+      function addSystemRow(prefill) {
+        const row = createSystemRow(prefill);
+        systemsContainer.appendChild(row);
+      }
+
+      function buildScript(config) {
+        const configStr = JSON.stringify(config, null, 2);
+        const configIndented = configStr.replace(/\n/g, '\n  ');
+        const lines = [
+          '<script>',
+          '(function () {',
+          '  // Tilda Multi-Currency Converter (Generated)',
+          '  const currencyConfig = ' + configIndented + ';',
+          '',
+          '  let wasForeign = false;',
+          '  let isSwapped = false;',
+          '  let ratesLoaded = false;',
+          '  let ratesPromise = null;',
+          '',
+          '  function clone(obj) { return JSON.parse(JSON.stringify(obj)); }',
+          '',
+          '  function getCartRoot() {',
+          '    return document.querySelector(".t706__cartwin");',
+          '  }',
+          '',
+          '  function getCartForm() {',
+          '    const root = getCartRoot();',
+          '    if (!root) return null;',
+          '    return root.querySelector("form") || root.closest("form");',
+          '  }',
+          '',
+          '  function getCurrentSystem() {',
+          '    return (window.tcart && window.tcart.system) || currencyConfig.base.system;',
+          '  }',
+          '',
+          '  function escapeRegex(value) {',
+          '    return value.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&");',
+          '  }',
+          '',
+          '  function pricePattern(value) {',
+          '    const str = String(value);',
+          '    if (str.indexOf(".") !== -1) {',
+          '      const parts = str.split(".");',
+          '      return escapeRegex(parts[0]) + "[\\\\.,]" + escapeRegex(parts[1]) + "0*";',
+          '    }',
+          '    return escapeRegex(str) + "(?:[\\\\.,]0+)?";',
+          '  }',
+          '',
+          '  function buildBaseAliases() {',
+          '    const code = (currencyConfig.base.code || "").toUpperCase();',
+          '    const symbol = currencyConfig.base.symbol;',
+          '    const aliases = [symbol, code, code.toLowerCase()];',
+          '    if (code === "RUB" || code === "RUR") {',
+          '      aliases.push("руб.", "руб", "р.", "р", "RUB", "RUR");',
+          '    }',
+          '    if (code === "USD") {',
+          '      aliases.push("$", "USD", "US$");',
+          '    }',
+          '    if (code === "EUR") {',
+          '      aliases.push("€", "EUR");',
+          '    }',
+          '    if (code === "GBP") {',
+          '      aliases.push("£", "GBP");',
+          '    }',
+          '    if (code === "JPY") {',
+          '      aliases.push("¥", "JPY");',
+          '    }',
+          '    return aliases.filter(Boolean);',
+          '  }',
+          '',
+          '  const BASE_ALIASES = buildBaseAliases();',
+          '',
+          '  function formatVariantPrice(price, cfg) {',
+          '    return currencyConfig.base.side === "l"',
+          '      ? (cfg.currency_txt + price)',
+          '      : (price + " " + cfg.currency_txt);',
+          '  }',
+          '',
+          '  function getEffectiveRate(cfg) {',
+          '    const baseRate = parseFloat(cfg.rate);',
+          '    const fee = parseFloat(cfg.fee_percent);',
+          '    const safeRate = (Number.isFinite(baseRate) && baseRate > 0) ? baseRate : 1;',
+          '    const feeVal = Number.isFinite(fee) ? fee : 0;',
+          '    const multiplier = 1 + feeVal / 100;',
+          '    if (multiplier <= 0) return safeRate;',
+          '    // Увеличиваем итоговую сумму в целевой валюте за счет комиссии',
+          '    return safeRate / multiplier;',
+          '  }',
+          '',
+          '  function applyConversion(cart, cfg) {',
+          '    const rate = getEffectiveRate(cfg);',
+          '    const conv = (val) => {',
+            '      if (val === undefined || val === null) return 0;',
+            '      let n = parseFloat(val);',
+            '      if (Number.isNaN(n)) return 0;',
+          '      n = n / rate;',
+          '      return parseFloat(n.toFixed(cfg.precision));',
+          '    };',
+          '',
+          '    // Products',
+          '    if (cart.products) {',
+          '      cart.products.forEach(p => {',
+          '        p.price = conv(p.price);',
+          '        p.amount = conv(p.amount);',
+          '',
+          '        if (p.options && p.options.length > 0) {',
+          '          p.options.forEach(opt => {',
+          '            if (opt.price > 0) {',
+          '              const oldPrice = opt.price;',
+          '              opt.price = conv(opt.price);',
+          '              if (opt.variant) {',
+          '                try {',
+          '                  const aliases = BASE_ALIASES;',
+          '                  if (aliases.length) {',
+          '                    const aliasPattern = aliases.map(escapeRegex).join("|");',
+          '                    const priceRegex = new RegExp("(" + pricePattern(oldPrice) + ")([\\\\s\\\\xa0]*)(?:" + aliasPattern + ")", "i");',
+          '                    if (priceRegex.test(opt.variant)) {',
+          '                      opt.variant = opt.variant.replace(priceRegex, formatVariantPrice(opt.price, cfg));',
+          '                    }',
+          '                  }',
+          '                } catch (e) {}',
+          '              }',
+          '            }',
+          '          });',
+          '        }',
+          '      });',
+          '    }',
+          '',
+          '    // Raw Subtotal',
+          '    cart.prodamount = conv(cart.prodamount);',
+          '',
+          '    // Promo Code Logic',
+          '    if (cart.prodamount_withdiscount) {',
+          '      cart.prodamount_withdiscount = conv(cart.prodamount_withdiscount);',
+          '      const discountVal = cart.prodamount - cart.prodamount_withdiscount;',
+          '      cart.prodamount_discountsum = parseFloat(discountVal.toFixed(cfg.precision));',
+          '',
+          '      if (cart.promocode) {',
+          '        cart.promocode.discountsum = cart.prodamount_discountsum;',
+          '        cart.promocode.prodamount_discountsum = cart.prodamount_discountsum;',
+          '      }',
+          '    }',
+          '',
+          '    // Delivery',
+          '    if (cart.delivery) {',
+          '      cart.delivery.price = conv(cart.delivery.price);',
+          '    }',
+          '',
+          '    // Grand Total',
+          '    cart.amount = conv(cart.amount);',
+          '',
+          '    // Metadata',
+          '    cart.currency = cfg.currency_txt;',
+          '    cart.currency_txt = cfg.currency_txt;',
+          '    cart.currency_side = currencyConfig.base.side;',
+          '    if (currencyConfig.base.side === "l") {',
+          '      cart.currency_txt_l = cfg.currency_txt;',
+          '      cart.currency_txt_r = "";',
+          '    } else {',
+          '      cart.currency_txt_l = "";',
+          '      cart.currency_txt_r = " " + cfg.currency_txt;',
+          '    }',
+          '',
+          '    return cart;',
+          '  }',
+          '',
+          '  function syncShadowStates() {',
+          '    if (!window.tcart) return;',
+          '    if (isSwapped) return;',
+          '    Object.keys(currencyConfig.systems).forEach(key => {',
+          '      const cfg = currencyConfig.systems[key];',
+          '      window[cfg.target_cart] = applyConversion(clone(window.tcart), cfg);',
+          '      window[cfg.target_cart].system = key;',
+          '    });',
+          '  }',
+          '',
+          '  function paintUI() {',
+          '    const sys = getCurrentSystem();',
+          '    const config = currencyConfig.systems[sys];',
+          '    const baseSymbol = currencyConfig.base.symbol || currencyConfig.base.code;',
+          '',
+          '    if (!config) {',
+          '      if (wasForeign) {',
+          '        if (typeof window.tcart__reDrawProducts === "function") window.tcart__reDrawProducts();',
+          '        if (typeof window.tcart__reDrawTotal === "function") window.tcart__reDrawTotal();',
+          '        wasForeign = false;',
+          '      }',
+          '',
+          '      const promoBlockSel = ".t706__cartwin .t-input-group.t-input-group_pc .t706__cartwin-prodamount-price";',
+          '      const promoBlockCurrSel = ".t706__cartwin .t-input-group.t-input-group_pc .t706__cartwin-prodamount-currency";',
+          '      const promoEl = document.querySelector(promoBlockSel);',
+          '      const promoCurr = document.querySelector(promoBlockCurrSel);',
+          '      if (window.tcart && window.tcart.prodamount_discountsum && promoEl) {',
+          '        promoEl.innerHTML = window.tcart.prodamount_discountsum;',
+          '      }',
+          '      if (promoCurr) promoCurr.innerHTML = baseSymbol;',
+          '',
+          '      return;',
+          '    }',
+          '',
+          '    wasForeign = true;',
+          '',
+          '    let activeCart = window[config.target_cart];',
+          '    if (!activeCart) {',
+          '      syncShadowStates();',
+          '      activeCart = window[config.target_cart];',
+          '    }',
+          '',
+          '    if (activeCart && activeCart.products) {',
+          '      activeCart.products.forEach((prod, index) => {',
+          '        const rowSel = ".t706__cartwin .t706__cartwin-products > div:nth-child(" + (index + 1) + ")";',
+          '        const row = document.querySelector(rowSel);',
+          '        if (row) {',
+          '          const priceEl = row.querySelector(".t706__cartwin-prodamount-price");',
+          '          if (priceEl) priceEl.innerHTML = prod.amount;',
+          '          const currEl = row.querySelector(".t706__cartwin-prodamount-currency");',
+          '          if (currEl) currEl.innerHTML = config.currency_txt;',
+          '',
+          '          if (prod.options && prod.options.length > 0) {',
+          '            const optsContainer = row.querySelector(".t706__product-title__option");',
+          '            if (optsContainer) {',
+          '              const groups = {};',
+          '              prod.options.forEach(opt => {',
+          '                if (!groups[opt.option]) {',
+          '                  groups[opt.option] = [];',
+          '                }',
+          '                groups[opt.option].push(opt.variant);',
+          '              });',
+          '              optsContainer.innerHTML = "";',
+          '              Object.entries(groups).forEach(entry => {',
+          '                const optName = entry[0];',
+          '                const variants = entry[1];',
+          '                const div = document.createElement("div");',
+          '                div.innerText = optName + ": " + variants.join(", ");',
+          '                optsContainer.appendChild(div);',
+          '              });',
+          '            }',
+          '          }',
+          '        }',
+          '      });',
+          '    }',
+          '',
+          '    if (activeCart) {',
+          '      const subTotalSel = ".t706__cartwin .t706__cartwin-bottom .t706__cartwin-prodamount .t706__cartwin-prodamount-price";',
+          '      const subTotalCurrSel = ".t706__cartwin .t706__cartwin-bottom .t706__cartwin-prodamount .t706__cartwin-prodamount-currency";',
+          '      const subPriceEl = document.querySelector(subTotalSel);',
+          '      if (subPriceEl) subPriceEl.innerHTML = activeCart.prodamount;',
+          '      const subCurrEl = document.querySelector(subTotalCurrSel);',
+          '      if (subCurrEl) subCurrEl.innerHTML = config.currency_txt;',
+          '',
+          '      const hasDiscount = activeCart.prodamount_withdiscount && (activeCart.prodamount_withdiscount < activeCart.prodamount);',
+          '      const isPercent = hasDiscount && activeCart.promocode && parseFloat(activeCart.promocode.discountpercent) > 0;',
+          '',
+          '      const infoSubSel = ".t706__cartwin .t706__cartwin-totalamount-info > span:nth-child(2) .t706__cartwin-prodamount-price";',
+          '      const infoSubCurrSel = ".t706__cartwin .t706__cartwin-totalamount-info > span:nth-child(2) .t706__cartwin-prodamount-currency";',
+          '      const infoSubEl = document.querySelector(infoSubSel);',
+          '      if (infoSubEl) infoSubEl.innerHTML = activeCart.prodamount;',
+          '      const infoSubCurr = document.querySelector(infoSubCurrSel);',
+          '      if (infoSubCurr) infoSubCurr.innerHTML = config.currency_txt;',
+          '',
+          '      if (hasDiscount) {',
+          '        let discIndex, subWDIndex, delIndex;',
+          '        if (isPercent) {',
+          '          discIndex = 8; subWDIndex = 11; delIndex = 14;',
+          '        } else {',
+          '          discIndex = 5; subWDIndex = 8; delIndex = 11;',
+          '        }',
+          '',
+          '        const discSel = ".t706__cartwin .t706__cartwin-totalamount-info > span:nth-child(" + discIndex + ") .t706__cartwin-prodamount-price";',
+          '        const discCurrSel = ".t706__cartwin .t706__cartwin-totalamount-info > span:nth-child(" + discIndex + ") .t706__cartwin-prodamount-currency";',
+          '        const discEl = document.querySelector(discSel);',
+          '        if (discEl) discEl.innerHTML = activeCart.prodamount_discountsum;',
+          '        const discCurr = document.querySelector(discCurrSel);',
+          '        if (discCurr) discCurr.innerHTML = config.currency_txt;',
+          '',
+          '        const subWDSel = ".t706__cartwin .t706__cartwin-totalamount-info > span:nth-child(" + subWDIndex + ") .t706__cartwin-prodamount-price";',
+          '        const subWDCurrSel = ".t706__cartwin .t706__cartwin-totalamount-info > span:nth-child(" + subWDIndex + ") .t706__cartwin-prodamount-currency";',
+          '        const subWDEl = document.querySelector(subWDSel);',
+          '        if (subWDEl) subWDEl.innerHTML = activeCart.prodamount_withdiscount;',
+          '        const subWDCurr = document.querySelector(subWDCurrSel);',
+          '        if (subWDCurr) subWDCurr.innerHTML = config.currency_txt;',
+          '',
+          '        if (activeCart.delivery) {',
+          '          const delSel = ".t706__cartwin .t706__cartwin-totalamount-info > span:nth-child(" + delIndex + ") .t706__cartwin-prodamount-price";',
+          '          const delCurrSel = ".t706__cartwin .t706__cartwin-totalamount-info > span:nth-child(" + delIndex + ") .t706__cartwin-prodamount-currency";',
+          '          const delEl = document.querySelector(delSel);',
+          '          if (delEl) delEl.innerHTML = activeCart.delivery.price;',
+          '          const delCurr = document.querySelector(delCurrSel);',
+          '          if (delCurr) delCurr.innerHTML = config.currency_txt;',
+          '        }',
+          '',
+          '        const promoBlockSel = ".t706__cartwin .t-input-group.t-input-group_pc .t706__cartwin-prodamount-price";',
+          '        const promoBlockCurrSel = ".t706__cartwin .t-input-group.t-input-group_pc .t706__cartwin-prodamount-currency";',
+          '        const promoBlockEl = document.querySelector(promoBlockSel);',
+          '        if (promoBlockEl) promoBlockEl.innerHTML = activeCart.prodamount_discountsum;',
+          '        const promoBlockCurr = document.querySelector(promoBlockCurrSel);',
+          '        if (promoBlockCurr) promoBlockCurr.innerHTML = config.currency_txt;',
+          '',
+          '      } else {',
+          '        if (activeCart.delivery) {',
+          '          const delSel = ".t706__cartwin .t706__cartwin-totalamount-info > span:nth-child(5) .t706__cartwin-prodamount-price";',
+          '          const delCurrSel = ".t706__cartwin .t706__cartwin-totalamount-info > span:nth-child(5) .t706__cartwin-prodamount-currency";',
+          '          const delEl = document.querySelector(delSel);',
+          '          if (delEl) delEl.innerHTML = activeCart.delivery.price;',
+          '          const delCurr = document.querySelector(delCurrSel);',
+          '          if (delCurr) delCurr.innerHTML = config.currency_txt;',
+          '        }',
+          '      }',
+          '',
+          '      const totalSel = ".t706__cartwin .t706__cartwin-totalamount-content .t706__cartwin-totalamount .t706__cartwin-prodamount-price";',
+          '      const totalCurrSel = ".t706__cartwin .t706__cartwin-totalamount-content .t706__cartwin-totalamount .t706__cartwin-prodamount-currency";',
+          '      const totalEl = document.querySelector(totalSel);',
+          '      if (totalEl) totalEl.innerHTML = activeCart.amount;',
+          '      const totalCurr = document.querySelector(totalCurrSel);',
+          '      if (totalCurr) totalCurr.innerHTML = config.currency_txt;',
+          '    }',
+          '  }',
+          '',
+          '  function updateLogic() {',
+          '    syncShadowStates();',
+          '    paintUI();',
+          '  }',
+          '',
+          '  function logRates() {',
+          '    const entries = {};',
+          '    Object.keys(currencyConfig.systems).forEach(key => {',
+          '      const cfg = currencyConfig.systems[key];',
+          '      entries[key] = {',
+          '        currency: cfg.currency_code,',
+          '        rate: cfg.rate,',
+          '        fee_percent: cfg.fee_percent || 0,',
+          '        effective_rate: getEffectiveRate(cfg)',
+          '      };',
+          '    });',
+          '    if (Object.keys(entries).length) {',
+          '      console.log("[Tilda MultiCurrency] Курсы валют", entries);',
+          '    }',
+          '  }',
+          '',
+          '  function setupInterceptor() {',
+          '    const root = getCartRoot();',
+          '    const btn = root ? root.querySelector(".t-submit") : null;',
+          '    const genericBtn = document.querySelector(".t706__cartwin-proccess");',
+          '    const targets = [btn, genericBtn].filter(Boolean);',
+          '',
+          '    targets.forEach(targetBtn => {',
+          '      if (targetBtn && !targetBtn.dataset.v26hook) {',
+          '        targetBtn.dataset.v26hook = "true";',
+          '        targetBtn.addEventListener("click", function (e) {',
+          '          if (isSwapped) return;',
+          '',
+          '          const sys = getCurrentSystem();',
+          '          const config = currencyConfig.systems[sys];',
+          '',
+          '          if (config) {',
+          '            const shadow = window[config.target_cart];',
+          '            if (shadow) {',
+          '              e.preventDefault();',
+          '              e.stopImmediatePropagation();',
+          '',
+          '              const dataToSend = clone(shadow);',
+          '              if (dataToSend.products) {',
+          '                dataToSend.products.forEach(p => {',
+          '                  delete p.uid; delete p.gen_uid; delete p.lid;',
+          '                });',
+          '              }',
+          '',
+          '              if (dataToSend.delivery) {',
+          '                const checkedRadio = document.querySelector(".t-radio_delivery:checked");',
+          '                if (checkedRadio) {',
+          '                  checkedRadio.value = dataToSend.delivery.name + " = " + dataToSend.delivery.price;',
+          '                }',
+          '              }',
+          '',
+          '              const form = getCartForm();',
+          '              if (form) {',
+          '                const fieldsToInject = {',
+          '                  "currency": config.currency_code,',
+          '                  "currency_txt": config.currency_txt,',
+          '                  "tildapayment[currency]": config.currency_code',
+          '                };',
+          '',
+          '                Object.keys(fieldsToInject).forEach(name => {',
+          '                  let input = form.querySelector(`input[name="${name}"]`);',
+          '                  if (!input) {',
+          '                    input = document.createElement("input");',
+          '                    input.type = "hidden";',
+          '                    input.name = name;',
+          '                    form.appendChild(input);',
+          '                  }',
+          '                  input.value = fieldsToInject[name];',
+          '                });',
+          '              }',
+          '',
+          '              Object.assign(window.tcart, dataToSend);',
+          '              isSwapped = true;',
+          '',
+          '              let attempts = 0;',
+          '              const verifyInt = setInterval(() => {',
+          '                attempts++;',
+          '                let isVerified = false;',
+          '                if (window.tcart.amount === dataToSend.amount &&',
+          '                  window.tcart.currency === config.currency_txt) {',
+          '                  isVerified = true;',
+          '                }',
+          '',
+          '                if (isVerified || attempts > 20) {',
+          '                  clearInterval(verifyInt);',
+          '                  targetBtn.click();',
+          '                }',
+          '              }, 100);',
+          '            }',
+          '          }',
+          '        }, true);',
+          '      }',
+          '    });',
+          '  }',
+          '',
+          '  function loadDynamicRates() {',
+          '    if (currencyConfig.rate_mode !== "dynamic") {',
+          '      ratesLoaded = true;',
+          '      return Promise.resolve();',
+          '    }',
+          '    if (ratesPromise) return ratesPromise;',
+          '    const base = currencyConfig.base.code.toLowerCase();',
+          '    const url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/" + base + ".json";',
+          '    ratesPromise = fetch(url)',
+          '      .then(res => res.json())',
+          '      .then(data => {',
+          '        const table = data && data[base];',
+          '        if (table) {',
+          '          Object.keys(currencyConfig.systems).forEach(key => {',
+          '            const cfg = currencyConfig.systems[key];',
+          '            const target = cfg.currency_code.toLowerCase();',
+          '            const targetPerBase = parseFloat(table[target]);',
+          '            if (targetPerBase > 0) {',
+          '              cfg.rate = 1 / targetPerBase;',
+          '            }',
+          '          });',
+          '        }',
+          '      })',
+          '      .catch(() => {})',
+          '      .finally(() => {',
+          '        ratesLoaded = true;',
+          '      });',
+          '    return ratesPromise;',
+          '  }',
+          '',
+          '  const initInt = setInterval(() => {',
+          '    if (window.tcart && window.tcart.products) {',
+          '      clearInterval(initInt);',
+          '      loadDynamicRates().then(() => {',
+          '        logRates();',
+          '        updateLogic();',
+          '      });',
+          '      const observer = new MutationObserver((mutations) => {',
+          '        let needsUpdate = false;',
+          '        mutations.forEach(m => {',
+          '          if (m.target.closest(".t706__cartwin-products") ||',
+          '            m.target.closest(".t-radio__wrapper-payment") ||',
+          '            m.target.classList.contains("t706__cartwin-totalamount") ||',
+          '            m.target.closest(".t-input-group_pc")) {',
+          '            needsUpdate = true;',
+          '          }',
+          '        });',
+          '        if (needsUpdate) {',
+          '          setTimeout(updateLogic, 50);',
+          '        }',
+          '      });',
+          '      const cartWin = document.querySelector(".t706__cartwin");',
+          '      if (cartWin) {',
+          '        observer.observe(cartWin, { childList: true, subtree: true, characterData: true, attributes: true });',
+          '      }',
+          '      setupInterceptor();',
+          '      setInterval(setupInterceptor, 2000);',
+          '      setTimeout(updateLogic, 200);',
+          '    }',
+          '  }, 500);',
+          '',
+          '  document.addEventListener("click", (e) => {',
+          '    if (e.target.closest(".t-radio__wrapper-payment") ||',
+          '      e.target.closest(".t-input-quantity") ||',
+          '      e.target.closest(".t-btn.t-btn_sm")) {',
+          '      setTimeout(updateLogic, 200);',
+          '    }',
+          '  });',
+          '',
+          '})();',
+          '</' + 'script>'
+        ];
+        return lines.join('\n');
+      }
+
+      function gatherConfig() {
+        const errors = [];
+        const warnings = [];
+
+        const baseCodeRaw = baseCodeInput.value.trim();
+        const baseCode = baseCodeRaw.toUpperCase();
+        if (!baseCode) errors.push('Укажите код базовой валюты.');
+
+        let baseSymbol = baseSymbolInput.value.trim();
+        if (!baseSymbol && baseCode) {
+          baseSymbol = getCurrencyDefaults(baseCode).symbol;
+        }
+
+        const baseSystem = baseSystemInput.value.trim();
+        if (!baseSystem) errors.push('Укажите ID основной платежной системы.');
+
+        const rateMode = document.querySelector('input[name="rate-mode"]:checked').value;
+
+        const systems = {};
+        const targetCartSet = new Set();
+
+        Array.from(document.querySelectorAll('.system-row')).forEach((row, index) => {
+          const systemId = row.querySelector('.sys-id').value.trim();
+          const currencyCode = row.querySelector('.sys-currency').value.trim().toUpperCase();
+
+          if (!systemId && !currencyCode) return;
+
+          if (!systemId) {
+            errors.push('В строке ' + (index + 1) + ' нужно указать ID системы.');
+            return;
+          }
+
+          if (!currencyCode) {
+            errors.push('В строке ' + (index + 1) + ' нужно указать код валюты.');
+            return;
+          }
+
+          if (currencyCode === baseCode) {
+            warnings.push('Строка ' + (index + 1) + ' использует базовую валюту и будет считаться основной.');
+            return;
+          }
+
+          let symbol = row.querySelector('.sys-symbol').value.trim();
+          if (!symbol) {
+            symbol = getCurrencyDefaults(currencyCode).symbol;
+          }
+
+          let precision = parseInt(row.querySelector('.sys-precision').value.trim(), 10);
+          if (Number.isNaN(precision)) {
+            precision = getCurrencyDefaults(currencyCode).precision;
+          }
+
+          let rate = parseFloat(row.querySelector('.sys-rate').value.trim());
+          if (Number.isNaN(rate) || rate <= 0) {
+            if (rateMode === 'manual') {
+              errors.push('В строке ' + (index + 1) + ' нужно указать ручной курс.');
+              return;
+            }
+            warnings.push('В строке ' + (index + 1) + ' нет ручного курса. Резервное значение = 1.');
+            rate = 1;
+          }
+
+          let feePercent = parseFloat(row.querySelector('.sys-fee').value.trim());
+          if (Number.isNaN(feePercent)) {
+            feePercent = 0;
+          }
+
+          let targetCart = 'tcart_' + sanitizeTargetCart(systemId);
+          if (targetCartSet.has(targetCart)) {
+            let counter = 2;
+            while (targetCartSet.has(targetCart + '_' + counter)) {
+              counter += 1;
+            }
+            targetCart = targetCart + '_' + counter;
+          }
+          targetCartSet.add(targetCart);
+
+          systems[systemId] = {
+            currency_code: currencyCode,
+            currency_txt: symbol,
+            precision: precision,
+            rate: rate,
+            fee_percent: feePercent,
+            target_cart: targetCart
+          };
+        });
+
+        if (Object.keys(systems).length === 0) {
+          warnings.push('Иностранные валюты не настроены.');
+        }
+
+        return {
+          errors,
+          warnings,
+          config: {
+            base: {
+              code: baseCode,
+              symbol: baseSymbol || baseCode,
+              side: baseSideSelect.value,
+              system: baseSystem
+            },
+            rate_mode: rateMode,
+            systems: systems
+          }
+        };
+      }
+
+      function generateScript() {
+        const result = gatherConfig();
+        if (result.errors.length) {
+          setStatus(result.errors.join(' '), 'error');
+          outputArea.value = '';
+          copyBtn.disabled = true;
+          return;
+        }
+
+        outputArea.value = buildScript(result.config);
+        copyBtn.disabled = false;
+
+        if (result.warnings.length) {
+          setStatus(result.warnings.join(' '), 'success');
+        } else {
+          setStatus('Скрипт успешно сгенерирован.', 'success');
+        }
+      }
+
+      function copyScript() {
+        const value = outputArea.value;
+        if (!value) return;
+        navigator.clipboard.writeText(value)
+          .then(() => setStatus('Скопировано в буфер обмена.', 'success'))
+          .catch(() => setStatus('Не удалось скопировать. Скопируйте вручную.', 'error'));
+      }
+
+      baseSymbolInput.addEventListener('input', () => {
+        baseSymbolInput.dataset.userEdited = 'true';
+      });
+
+      attachCurrencyAutoFill(baseCodeInput, baseSymbolInput, null);
+
+      if (quoteSearchInput) {
+        quoteSearchInput.addEventListener('input', renderQuotes);
+      }
+
+      if (baseCodeInput) {
+        baseCodeInput.addEventListener('input', () => {
+          if (quoteTimer) clearTimeout(quoteTimer);
+          quoteTimer = setTimeout(() => {
+            const code = baseCodeInput.value.trim().toUpperCase();
+            loadQuotes(code);
+          }, 400);
+        });
+      }
+
+      function updateRateModeUI() {
+        const isDynamic = document.querySelector('input[name="rate-mode"]:checked').value === 'dynamic';
+        if (isDynamic) {
+          rateNote.textContent = 'Курс валют устанавливается автоматически с биржи.';
+          if (rateHeaderText) rateHeaderText.textContent = 'Резервный курс';
+          if (rateFaqText) rateFaqText.textContent = 'Резервный курс используется, если биржа не отвечает или курс не загрузился. В этом случае расчет выполняется по этому значению.';
+          if (quotesBlock) quotesBlock.classList.remove('is-hidden');
+        } else {
+          rateNote.textContent = 'Устанавливайте курс валюты самостоятельно.';
+          if (rateHeaderText) rateHeaderText.textContent = 'Курс валюты';
+          if (rateFaqText) rateFaqText.textContent = 'Введите нужный вам курс валюты, по нему будет рассчитываться конвертация.';
+          if (quotesBlock) quotesBlock.classList.add('is-hidden');
+        }
+      }
+
+      function openModalFromButton(button) {
+        if (!modal || !modalMedia || !modalText || !button) return;
+        const mediaType = button.getAttribute('data-media-type');
+        const mediaSrc = button.getAttribute('data-media-src');
+        const text = button.getAttribute('data-text') || '';
+
+        modalMedia.innerHTML = '';
+        if (mediaType === 'image' && mediaSrc) {
+          const img = document.createElement('img');
+          img.src = mediaSrc;
+          img.alt = '';
+          modalMedia.appendChild(img);
+        }
+        if (mediaType === 'video' && mediaSrc) {
+          const iframe = document.createElement('iframe');
+          iframe.src = mediaSrc;
+          iframe.allow = 'clipboard-write; autoplay';
+          iframe.setAttribute('webkitAllowFullScreen', '');
+          iframe.setAttribute('mozallowfullscreen', '');
+          iframe.allowFullscreen = true;
+          modalMedia.appendChild(iframe);
+        }
+        modalText.textContent = text;
+        modal.classList.add('is-open');
+        document.body.classList.add('modal-open');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        document.body.classList.remove('modal-open');
+        modal.setAttribute('aria-hidden', 'true');
+        if (modalMedia) modalMedia.innerHTML = '';
+      }
+
+      document.querySelectorAll('input[name="rate-mode"]').forEach(input => {
+        input.addEventListener('change', updateRateModeUI);
+      });
+
+      document.querySelectorAll('.faq-popup-btn').forEach(button => {
+        button.addEventListener('click', () => openModalFromButton(button));
+      });
+
+      if (modal) {
+        modal.addEventListener('click', (event) => {
+          if (event.target === modal) closeModal();
+        });
+      }
+
+      if (modalClose) {
+        modalClose.addEventListener('click', closeModal);
+      }
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal && modal.classList.contains('is-open')) {
+          closeModal();
+        }
+      });
+
+      addSystemBtn.addEventListener('click', () => addSystemRow());
+      generateBtn.addEventListener('click', generateScript);
+      copyBtn.addEventListener('click', copyScript);
+
+      addSystemRow();
+
+      fetchCurrencyList();
+      updateRateModeUI();
+    })();
+  </script>
+</body>
+</html>

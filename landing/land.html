@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Unbounded:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <style>
+        .mcg-landing {
+            font-family: "Manrope", sans-serif;
+            color: var(--ink);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .mcg-landing,
+        .mcg-landing * {
+            box-sizing: border-box !important;
+        }
+
+        .mcg-landing h1,
+        .mcg-landing h2,
+        .mcg-landing h3,
+        .mcg-landing h4,
+        .mcg-landing h5,
+        .mcg-landing h6 {
+            margin: 0 0 12px;
+        }
+
+        .mcg-landing p {
+            margin: 0 0 12px;
+        }
+
+        .mcg-landing ul,
+        .mcg-landing ol {
+            margin: 0 0 12px;
+            padding-left: 18px;
+        }
+
+        .mcg-landing ul.list {
+            margin: 18px 0 0;
+            padding-left: 0;
+        }
+
+        .mcg-landing li {
+            margin: 0;
+        }
+
+        .mcg-landing img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .mcg-landing a,
+        .mcg-landing a:visited {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        .mcg-landing button {
+            font-family: inherit;
+            color: inherit;
+            background: transparent;
+            border: none;
+        }
+
+        .mcg-landing .toggle__btn,
+        .mcg-landing .accordion-trigger {
+            color: var(--ink) !important;
+        }
+
+
+        .mcg-landing *,
+        .mcg-landing *::before,
+        .mcg-landing *::after {
+            box-sizing: border-box;
+        }
+
+        .mcg-landing a,
+        .mcg-landing a:visited {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        .mcg-landing button {
+            font-family: inherit;
+            color: inherit;
+        }
+
+        .mcg-landing .toggle__btn,
+        .mcg-landing .accordion-trigger {
+            color: var(--ink) !important;
+        }
+
+        .mcg-landing {
+            --bg: #f7f7f0;
+            --bg-alt: #eaf6d6;
+            --bg-dark: #0f120c;
+            --ink: #1b1f16;
+            --ink-muted: #5f6657;
+            --accent: #c8f27a;
+            --accent-strong: #9ce24e;
+            --accent-soft: #f0ffd3;
+            --danger: #ff4d4f;
+            --warning: #ffb020;
+            --note: #5b7cff;
+            --ok: #2db55d;
+            --card: #ffffff;
+            --shadow: 0 18px 45px rgba(17, 25, 12, 0.12);
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --radius-sm: 12px;
+            --border: 1px solid rgba(27, 31, 22, 0.08);
+        }
+
+
+        .mcg-landing {
+            margin: 0;
+            font-family: "Manrope", sans-serif;
+            background: radial-gradient(circle at top, #ffffff 0%, var(--bg) 42%, #f1f7e7 100%);
+            color: var(--ink);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .mcg-landing img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .mcg-landing a,
+        .mcg-landing .mcg-landing a:visited {
+            color: inherit !important;
+            text-decoration: none;
+        }
+
+        .mcg-landing a:hover {
+            color: inherit;
+        }
+
+        .mcg-landing .page-noise {
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml, %3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .mcg-landing .container {
+            width: min(1200px, 92vw);
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mcg-landing .section {
+            padding: 88px 0;
+        }
+
+        .mcg-landing .section--alt {
+            background: var(--bg-alt);
+        }
+
+        .mcg-landing .section--cta {
+            background: linear-gradient(120deg, #0f120c 0%, #1c2512 60%, #0f120c 100%);
+            color: #f7f9f1;
+        }
+
+        .mcg-landing .section__head {
+            margin-bottom: 40px;
+        }
+
+        .mcg-landing .section__head h2 {
+            margin: 0 0 12px;
+            font-family: "Unbounded", sans-serif;
+            font-size: clamp(28px, 3vw, 40px);
+        }
+
+        .mcg-landing .section__head p {
+            margin: 0;
+            color: var(--ink-muted);
+            max-width: 720px;
+        }
+
+        .mcg-landing .section__head--row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .mcg-landing .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .mcg-landing .header {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(16px);
+            background: rgba(247, 247, 240, 0.8);
+            border-bottom: var(--border);
+            z-index: 10;
+        }
+
+        .mcg-landing .header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 18px 0;
+        }
+
+        .mcg-landing .brand {
+            display: flex;
+            flex-direction: column;
+            font-weight: 700;
+        }
+
+        .mcg-landing .brand__link {
+            font-family: "Unbounded", sans-serif;
+            font-size: 15px;
+            color: var(--ink) !important;
+            display: inline-flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .mcg-landing .brand__title {
+            font-family: "Unbounded", sans-serif;
+            font-size: 16px;
+        }
+
+        .mcg-landing .brand__tag {
+            font-size: 12px;
+            color: var(--ink-muted);
+        }
+
+        .mcg-landing .nav {
+            display: flex;
+            gap: 18px;
+            font-size: 14px;
+            color: var(--ink-muted);
+        }
+
+        .mcg-landing .nav a {
+            padding: 6px 8px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            color: var(--ink-muted) !important;
+        }
+
+        .mcg-landing .nav a:hover {
+            background: #ffffff;
+            color: var(--ink) !important;
+        }
+
+        .mcg-landing .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 999px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            gap: 8px;
+            color: inherit !important;
+        }
+
+        .mcg-landing .btn--primary {
+            background: var(--accent-strong);
+            color: #0b1206 !important;
+            box-shadow: 0 10px 30px rgba(156, 226, 78, 0.35);
+        }
+
+        .mcg-landing .btn--primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 38px rgba(156, 226, 78, 0.45);
+        }
+
+        .mcg-landing .btn--secondary {
+            background: #ffffff;
+            border: 1px solid rgba(27, 31, 22, 0.14);
+            color: var(--ink) !important;
+        }
+
+        .mcg-landing .btn--ghost {
+            background: transparent;
+            border: 1px dashed rgba(27, 31, 22, 0.25);
+            color: var(--ink) !important;
+        }
+
+        .mcg-landing .btn--wide {
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .mcg-landing .hero {
+            padding-top: 120px;
+        }
+
+        .mcg-landing .hero__grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-areas:
+                "intro visual"
+                "body visual";
+            column-gap: 40px;
+            row-gap: 18px;
+            align-items: center;
+        }
+
+        .mcg-landing .hero__intro {
+            grid-area: intro;
+            margin-bottom: 0;
+        }
+
+        .mcg-landing .hero__body {
+            grid-area: body;
+        }
+
+        .mcg-landing .hero__visual {
+            grid-area: visual;
+        }
+
+        .mcg-landing .hero h1 {
+            font-family: "Unbounded", sans-serif;
+            font-size: clamp(32px, 4vw, 52px);
+            margin: 10px 0 8px;
+        }
+
+        .mcg-landing .lead {
+            font-size: 18px;
+            color: var(--ink-muted);
+            margin: 0 0 18px;
+        }
+
+        .mcg-landing .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 24px 0;
+        }
+
+        .mcg-landing .chip {
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #ffffff;
+            border: 1px solid rgba(27, 31, 22, 0.12);
+            font-size: 13px;
+        }
+
+        .mcg-landing .hero__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .mcg-landing .alert {
+            margin-top: 24px;
+            padding: 16px 18px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(27, 31, 22, 0.14);
+            background: #ffffff;
+            color: var(--ink);
+            font-size: 14px;
+            display: block;
+        }
+
+        .mcg-landing .alert span {
+            font-weight: 600;
+            display: block;
+            margin-top: 6px;
+        }
+
+        .mcg-landing .alert strong {
+            font-weight: 700;
+        }
+
+        .mcg-landing .alert ul {
+            margin: 10px 0 0 18px;
+        }
+
+        .mcg-landing .alert--danger {
+            border-color: rgba(255, 77, 79, 0.35);
+            background: rgba(255, 77, 79, 0.1);
+            color: #a60b10;
+        }
+
+        .mcg-landing .alert--warning {
+            border-color: rgba(255, 176, 32, 0.45);
+            background: rgba(255, 176, 32, 0.16);
+            color: #7a4a00;
+        }
+
+        .mcg-landing .alert--ok {
+            border-color: rgba(45, 181, 93, 0.3);
+            background: rgba(45, 181, 93, 0.12);
+            color: #146735;
+        }
+
+        .mcg-landing .alert--note {
+            border-color: rgba(91, 124, 255, 0.35);
+            background: rgba(91, 124, 255, 0.12);
+            color: #1f3fa6;
+        }
+
+        .mcg-landing .hero__visual {
+            position: relative;
+        }
+
+        .mcg-landing .mockup {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: var(--border);
+        }
+
+        .mcg-landing .mockup__bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 18px;
+            background: #f2f5ea;
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
+
+        .mcg-landing .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .mcg-landing .dot--red {
+            background: #ff6b6b;
+        }
+
+        .mcg-landing .dot--yellow {
+            background: #ffd166;
+        }
+
+        .mcg-landing .dot--green {
+            background: #7ae582;
+        }
+
+        .mcg-landing .mockup__title {
+            margin-left: auto;
+            font-weight: 600;
+        }
+
+        .mcg-landing .mockup__body {
+            padding: 0;
+            display: block;
+        }
+
+        .mcg-landing .mockup__switch {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .mcg-landing .label {
+            font-size: 12px;
+            color: var(--ink-muted);
+        }
+
+        .mcg-landing .pill {
+            margin-top: 6px;
+            padding: 8px 10px;
+            border-radius: 12px;
+            background: var(--accent-soft);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .mcg-landing .mockup__items {
+            display: grid;
+            gap: 12px;
+        }
+
+        .mcg-landing .mockup__item {
+            display: grid;
+            grid-template-columns: 44px 1fr auto;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 16px;
+            background: #f7f7f0;
+        }
+
+        .mcg-landing .item__thumb {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(140deg, #d3e7b7, #f8f3c9);
+        }
+
+        .mcg-landing .item__line {
+            height: 8px;
+            background: #d8dfcc;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+
+        .mcg-landing .item__line.short {
+            width: 60%;
+        }
+
+        .mcg-landing .item__price {
+            font-weight: 600;
+        }
+
+        .mcg-landing .mockup__total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+        }
+
+        .mcg-landing .total {
+            font-size: 18px;
+        }
+
+        .mcg-landing .hero__note {
+            margin-top: 12px;
+            color: var(--ink-muted);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .mcg-landing .split {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .mcg-landing .panel {
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            position: relative;
+        }
+
+        .mcg-landing .panel--outline {
+            background: #ffffff;
+            border: var(--border);
+        }
+
+        .mcg-landing .panel--accent {
+            background: #f3ffd9;
+            border: 1px solid rgba(156, 226, 78, 0.3);
+        }
+
+        .mcg-landing .panel--danger {
+            background: rgba(255, 77, 79, 0.1);
+            border: 1px solid rgba(255, 77, 79, 0.35);
+        }
+
+        .mcg-landing .panel--accent,
+        .mcg-landing .panel--danger {
+            padding-top: 52px !important;
+            padding-left: 52px !important;
+        }
+
+        .mcg-landing .panel--danger::before {
+            content: "";
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 30px;
+            height: 30px;
+            background: url("https://static.tildacdn.com/tild3164-6262-4138-b934-366230663763/close.png") no-repeat center/contain;
+        }
+
+        .mcg-landing .panel--accent::before {
+            content: "";
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 30px;
+            height: 30px;
+            background: url("https://static.tildacdn.com/tild3632-6166-4736-b764-353934333162/check.png") no-repeat center/contain;
+        }
+
+        .mcg-landing .panel--danger .card {
+            background: rgba(255, 77, 79, 0.08);
+            border-color: rgba(255, 77, 79, 0.25);
+        }
+
+        .mcg-landing .panel__note {
+            margin-top: 16px;
+            font-weight: 600;
+        }
+
+        .mcg-landing .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .mcg-landing .card {
+            background: var(--card);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: var(--border);
+            box-shadow: 0 10px 24px rgba(20, 30, 15, 0.06);
+        }
+
+        .mcg-landing .card--tall {
+            min-height: 220px;
+        }
+
+        .mcg-landing .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .mcg-landing .step {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            background: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .mcg-landing .note-block {
+            margin-top: 30px;
+            padding: 18px 22px;
+            border-radius: var(--radius-md);
+            background: #ffffff;
+            border: 1px dashed rgba(27, 31, 22, 0.2);
+        }
+
+        .mcg-landing .note-block--danger {
+            border: 1px solid rgba(255, 77, 79, 0.4);
+            background: rgba(255, 77, 79, 0.1);
+            color: #a60b10;
+        }
+
+        .mcg-landing .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .mcg-landing .toggle {
+            background: #ffffff;
+            border-radius: 999px;
+            padding: 6px;
+            display: flex;
+            gap: 6px;
+            border: var(--border);
+        }
+
+        .mcg-landing .toggle__btn {
+            background: transparent;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .mcg-landing .toggle__btn.is-active {
+            background: var(--accent-strong);
+        }
+
+        .mcg-landing .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .mcg-landing .video-card {
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: var(--border);
+            display: grid;
+        }
+
+        .mcg-landing .video-card__media {
+            position: relative;
+            padding-top: 56.25%;
+            background: #0f120c;
+        }
+
+        .mcg-landing .video-card__media iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .mcg-landing .video-card__body {
+            padding: 16px 18px 22px;
+        }
+
+        .mcg-landing .currency {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            padding: 22px;
+            border: var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .mcg-landing .currency__controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .mcg-landing .currency__controls input {
+            flex: 1 1 280px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(27, 31, 22, 0.16);
+            font-size: 14px;
+        }
+
+        .mcg-landing .currency__meta {
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
+
+        .mcg-landing .currency__list {
+            max-height: 360px;
+            overflow-y: auto;
+            border-radius: 14px;
+            border: var(--border);
+        }
+
+        .mcg-landing .currency-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 16px;
+            border-bottom: var(--border);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .mcg-landing .currency-row:hover {
+            background: var(--accent-soft);
+        }
+
+        .mcg-landing .currency-row:last-child {
+            border-bottom: none;
+        }
+
+        .mcg-landing .currency-code {
+            font-weight: 700;
+        }
+
+        .mcg-landing .currency-name {
+            color: var(--ink-muted);
+        }
+
+        .mcg-landing .currency__status {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
+
+        .mcg-landing .accordion {
+            display: grid;
+            gap: 12px;
+        }
+
+        .mcg-landing .accordion-item {
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            border: var(--border);
+            overflow: hidden;
+        }
+
+        .mcg-landing .accordion-trigger {
+            width: 100%;
+            text-align: left;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            font-weight: 600;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .mcg-landing #instruction .accordion-trigger,
+        .mcg-landing #faq .accordion-trigger {
+            font-size: 20px;
+        }
+
+        .mcg-landing .accordion-panel {
+            padding: 0 20px 18px;
+            display: none;
+            color: var(--ink);
+        }
+
+        .mcg-landing .accordion-panel p {
+            margin: 0 0 10px;
+        }
+
+        .mcg-landing .accordion-panel ul,
+        .mcg-landing .accordion-panel ol {
+            margin: 0 0 10px;
+        }
+
+        .mcg-landing .accordion-panel .alert {
+            margin: 10px 0 !important;
+        }
+
+        .mcg-landing .accordion-item.is-open .accordion-panel {
+            display: block;
+        }
+
+        .mcg-landing .screen-grid {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+
+        .mcg-landing .screen {
+            background: #ffffff;
+            border-radius: 14px;
+            border: var(--border);
+            padding: 12px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--ink-muted);
+            text-decoration: none;
+            display: grid;
+            gap: 8px;
+        }
+
+        .mcg-landing .screen span {
+            font-size: 14px;
+            color: var(--ink);
+        }
+
+        .mcg-landing .pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .mcg-landing .pricing__card {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            padding: 26px;
+            border: var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .mcg-landing .pricing__title {
+            font-size: 24px;
+            line-height: 1.2;
+            font-family: "Unbounded", sans-serif;
+            margin: 0 0 8px;
+        }
+
+        .mcg-landing .price {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 12px 0 8px;
+        }
+
+        .mcg-landing .price__meta {
+            color: var(--ink-muted);
+            font-size: 14px;
+        }
+
+        .mcg-landing .list {
+            list-style: none;
+            padding: 0;
+            margin: 18px 0 0;
+            display: grid;
+            gap: 10px;
+            padding-left: 0 !important;
+            margin-left: 0 !important;
+        }
+
+        .mcg-landing .list li {
+            padding-left: 28px !important;
+            position: relative;
+        }
+
+        .mcg-landing .list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 18px;
+            height: 18px;
+            background: url("https://static.tildacdn.com/tild3632-6166-4736-b764-353934333162/check.png") no-repeat center/contain;
+        }
+
+        .mcg-landing .list--negative li::before {
+            background-image: url("https://static.tildacdn.com/tild3164-6262-4138-b934-366230663763/close.png");
+        }
+
+        .mcg-landing .divider {
+            height: 1px;
+            background: rgba(27, 31, 22, 0.1);
+            margin: 18px 0;
+        }
+
+        .mcg-landing .legal {
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--ink-muted);
+        }
+
+        .mcg-landing .mini-panel {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 176, 32, 0.4);
+            background: rgba(255, 176, 32, 0.15);
+            font-size: 13px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .mcg-landing .mini-panel__title {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+        }
+
+        .mcg-landing .mini-panel__note {
+            font-weight: 600;
+            color: #7a4a00;
+        }
+
+        .mcg-landing .mini-panel ul {
+            margin: 0;
+            padding-left: 18px;
+            display: grid;
+            gap: 6px;
+        }
+
+        .mcg-landing .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
+            font-weight: 600;
+            padding: 14px 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(27, 31, 22, 0.18);
+            background: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .mcg-landing .checkbox input {
+            width: 26px;
+            height: 26px;
+            accent-color: var(--accent-strong);
+            transform: scale(1.15);
+            cursor: pointer;
+        }
+
+        .mcg-landing .pricing__aside {
+            padding: 20px;
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            border: var(--border);
+        }
+
+        .mcg-landing .cta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .mcg-landing .cta__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .mcg-landing .section--cta h2 {
+            font-family: "Unbounded", sans-serif;
+        }
+
+        .mcg-landing .section--cta .btn--secondary {
+            color: #0b1206 !important;
+        }
+
+        .mcg-landing .footer {
+            padding: 40px 0 60px;
+            background: #0f120c;
+            color: #d7ddcb;
+        }
+
+        .mcg-landing .footer__inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .mcg-landing .footer__links {
+            display: flex;
+            gap: 18px;
+            color: #9da48f;
+        }
+
+        .mcg-landing .footer__links a {
+            color: #9da48f !important;
+        }
+
+        .mcg-landing .muted {
+            color: #9da48f;
+        }
+
+        @media (max-width: 900px) {
+            .mcg-landing .nav {
+                display: none;
+            }
+
+            .mcg-landing .section__head--row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .mcg-landing .hero__grid {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "intro"
+                    "visual"
+                    "body";
+                row-gap: 12px;
+            }
+
+            .mcg-landing .hero__visual {
+                margin-top: 0;
+            }
+
+            .mcg-landing .hero__body {
+                margin-top: 20px;
+            }
+
+            .mcg-landing .lead {
+                margin-bottom: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .mcg-landing .header__inner {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .mcg-landing .hero {
+                padding-top: 80px;
+            }
+
+            .mcg-landing .btn--wide {
+                width: 100%;
+            }
+
+            .mcg-landing .accordion-trigger {
+                font-size: 16px;
+            }
+
+            .mcg-landing #instruction .accordion-trigger,
+            .mcg-landing #faq .accordion-trigger {
+                font-size: 18px;
+            }
+
+            .mcg-landing .checkbox {
+                font-size: 13px;
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mcg-landing" class="mcg-landing">
+        <div class="page-noise" aria-hidden="true"></div>
+
+        <header class="header">
+            <div class="container header__inner">
+                <div class="brand">
+                    <a class="brand__link" href="/">
+                        <span class="brand__title">← Назад</span>
+                        <span class="brand__tag">На главную</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="#features">Функциональность</a>
+                    <a href="#usecases">Возможности</a>
+                    <a href="#videos">Демонстрация</a>
+                    <a href="#instruction">Инструкция</a>
+                    <a href="#pricing">Цена</a>
+                </nav>
+                <a class="btn btn--primary" href="#pricing">Купить доступ</a>
+            </div>
+        </header>
+
+        <main>
+            <section class="section hero" id="hero">
+                <div class="container hero__grid">
+                    <div class="hero__intro">
+                        <div class="eyebrow">Мультивалютность для ST100</div>
+                        <h1>Мультивалютная корзина для Tilda</h1>
+                    </div>
+                    <div class="hero__body">
+                        <p class="lead">
+                            Скрипт <strong>конвертирует сумму в корзине (ST100)</strong> при переключении платежной
+                            системы. Настраивайте любые связки «валюта → платежка» под Россию, СНГ и международные
+                            проекты —
+                            <strong>без ковыряния в коде</strong> (через конструктор в личном кабинете).
+                        </p>
+                        <div class="chip-row">
+                            <span class="chip">Конвертация в корзине ST100</span>
+                            <span class="chip">Курс с биржи 24/7</span>
+                            <span class="chip">Добавление комиссии %</span>
+                            <span class="chip">Конструктор скрипта</span>
+                            <span class="chip">Установка по инструкции</span>
+                        </div>
+                        <div class="hero__actions">
+                            <a class="btn btn--primary" href="#pricing">Купить доступ</a>
+                            <a class="btn btn--secondary" href="#videos">Посмотреть видео</a>
+                            <a class="btn btn--ghost" href="#instruction">Открыть инструкцию</a>
+                        </div>
+                        <div class="alert alert--danger">
+                            <strong>Скрипт НЕ подключает платежные системы в Tilda.</strong>
+                            <span>Платёжки должны быть уже подключены в настройках Tilda.</span>
+                        </div>
+                    </div>
+                    <div class="hero__visual">
+                        <div class="mockup">
+                            <div class="mockup__bar">
+                                <span class="dot dot--red"></span>
+                                <span class="dot dot--yellow"></span>
+                                <span class="dot dot--green"></span>
+                                <span class="mockup__title">Корзина ST100</span>
+                            </div>
+                            <div class="mockup__body">
+                                <img src="https://static.tildacdn.com/tild6565-3034-4333-b839-373331633537/animCart720p.gif"
+                                    alt="Пример корзины ST100">
+                            </div>
+                        </div>
+                        <div class="hero__note">Пример работы мультивалютности в корзине Tilda</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="problem">
+                <div class="container split">
+                    <div class="panel panel--danger">
+                        <h2>Проблема Tilda</h2>
+                        <p>
+                            В Tilda <strong>нет конвертации суммы при переключении способа оплаты</strong>. Пример:
+                            основная валюта RUB,
+                            товар 300 ₽. Переключили на PayPal (USD) → для пользователя будет доступна сумма <strong>300
+                                $</strong>.
+                        </p>
+                        <div class="card-grid">
+                            <div class="card">
+                                <h3>В итоге</h3>
+                                <p>Невозможно использовать несколько систем оплат в разных валютах на одном сайте Tilda
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel--accent">
+                        <h2>Решение</h2>
+                        <p>
+                            Скрипт <strong>пересчитывает сумму в корзине ST100</strong> при выборе платежной системы в
+                            валюте, поэтому итоговая сумма
+                            всегда корректная.</p>
+                        <div class="alert alert--warning">Важно: скрипт не конвертирует цены в карточках товара,
+                            товарной сетке или каталоге товаров. Конвертация происходит строго внутри корзины</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section--alt" id="steps">
+                <div class="container">
+                    <div class="section__head">
+                        <h2>Как это работает</h2>
+                        <p>Три шага до корректной мультивалютной оплаты.</p>
+                    </div>
+                    <div class="steps">
+                        <div class="card">
+                            <div class="step">1</div>
+                            <h3>Оплата доступа</h3>
+                            <p>Доступ к конструктору мультивалютного скрипта на 12 месяцев + инструкция.</p>
+                            <p>Сгенерированный скрипт остаётся у вас и продолжает работать на сайте даже после окончания
+                                доступа к кабинету.</p>
+                        </div>
+                        <div class="card">
+                            <div class="step">2</div>
+                            <h3>Генерация скрипта в конструкторе</h3>
+                            <p>Указываете свои платежные системы, валюты и другие настройки = получаете готовый скрипт
+                                для вашего Tilda сайта.</p>
+                        </div>
+                        <div class="card">
+                            <div class="step">3</div>
+                            <h3>Установка</h3>
+                            <p>Вставляете код скрипта в блок T123 на Tilda (строго по инструкции). Готово!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="usecases">
+                <div class="container">
+                    <div class="section__head">
+                        <h2>Любые комбинации валют и платежных систем в мультивалюной корзине</h2>
+                        <p>Конвертация валют работает для локальных и международных проектов.</p>
+                    </div>
+                    <div class="card-grid">
+                        <div class="card card--tall">
+                            <h3>Россия</h3>
+                            <p><strong>Основная валюта:</strong> RUB</p>
+                            <p><strong>Доп. валюты:</strong> USD, EUR, другие</p>
+                        </div>
+                        <div class="card card--tall">
+                            <h3>Любая другая страна</h3>
+                            <p><strong>Валюта страны:&nbsp;</strong>например KZT</p>
+                            <p><strong>Доп. валюты:</strong>&nbsp;например UZS, USD, другие</p>
+                        </div>
+                    </div>
+                    <div class="note-block">
+                        <h3>Возможно установить несколько платежных систем одной валюты</h3>
+                        <p>Например: 2 платёжки в RUB + платёжки в USD и EUR.</p>
+                    </div>
+                    <div class="alert alert--warning">
+                        Оплаты в разных валютах подключаются через отдельные платежные системы. Например Юкасса для RUB,
+                        PayPal для USD, Stripe для EUR или любая другая платежная система доступная в настройках вашего
+                        личного кабинета Tilda.
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section--alt" id="features">
+                <div class="container">
+                    <div class="section__head">
+                        <h2>Функциональность и надёжность</h2>
+                        <p>Функции, которые закрывают 99% сценариев.</p>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="card">
+                            <h3>Авто-курс с биржи 24/7</h3>
+                            <p>Курс подгружается автоматически и обновляется при посещении.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Ручной курс</h3>
+                            <p>Можно зафиксировать котировки вручную.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Добавление комиссии %</h3>
+                            <p>Добавьте +{N}% к курсу для нужного метода оплаты.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Конструктор вместо кода</h3>
+                            <p>Не нужно разбираться в коде: только заполнить поля → «Сгенерировать».</p>
+                        </div>
+                        <div class="card">
+                            <h3>Гибкая установка</h3>
+                            <p>Можно поставить на 1 страницу или на весь сайт через header/footer.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Предсказуемое поведение</h3>
+                            <p>Работает только при соблюдении инструкции (дисциплина установки).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="videos">
+                <div class="container">
+                    <div class="section__head section__head--row">
+                        <div>
+                            <h2>Видео: как это работает в реальных сценариях</h2>
+                            <p>Демонстрация 4 платежных сценариев в реальной работе</p>
+                        </div>
+                        <div class="toggle" role="group" aria-label="Платформа видео">
+                            <button class="toggle__btn is-active" data-platform="youtube" type="button">YouTube</button>
+                            <button class="toggle__btn" data-platform="rutube" type="button">RuTube</button>
+                        </div>
+                    </div>
+                    <div class="video-grid">
+                        <article class="video-card">
+                            <div class="video-card__media">
+                                <iframe title="RUB → USD + EUR"
+                                    data-youtube="https://www.youtube.com/embed/H0mh97QJ7WQ?si=iidQPHsImh6VmA7Z"
+                                    data-rutube="https://rutube.ru/play/embed/def5b46fb07a1633ceb3cbcd57ef61c3"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""
+                                    src="https://www.youtube.com/embed/H0mh97QJ7WQ?si=iidQPHsImh6VmA7Z"></iframe>
+                            </div>
+                            <div class="video-card__body">
+                                <h3>RUB → USD + EUR</h3>
+                                <p>Пример настройки: Россия и международные валютные оплаты.</p>
+                            </div>
+                        </article>
+                        <article class="video-card">
+                            <div class="video-card__media">
+                                <iframe title="2 платежки в RUB + USD + EUR"
+                                    data-youtube="https://www.youtube.com/embed/xw4Vxm9myzw?si=Fgtmy3xBNZDyZY9w"
+                                    data-rutube="https://rutube.ru/play/embed/fe5633fcd35315de96d2cfc42d3aec02"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""
+                                    src="https://www.youtube.com/embed/xw4Vxm9myzw?si=Fgtmy3xBNZDyZY9w"></iframe>
+                            </div>
+                            <div class="video-card__body">
+                                <h3>2 в RUB → USD + EUR</h3>
+                                <p>Пример настройки: несколько платежек одной валюты в одной корзине.</p>
+                            </div>
+                        </article>
+                        <article class="video-card">
+                            <div class="video-card__media">
+                                <iframe title="KZT → UZS → PayPal (USD)"
+                                    data-youtube="https://www.youtube.com/embed/bvSiE2E9gs0?si=2dMGCPFnCWLWZIRU"
+                                    data-rutube="https://rutube.ru/video/5e69b2ef8c0c7e947d9885ec11547355/"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""
+                                    src="https://www.youtube.com/embed/bvSiE2E9gs0?si=2dMGCPFnCWLWZIRU"></iframe>
+                            </div>
+                            <div class="video-card__body">
+                                <h3>KZT → UZS + USD</h3>
+                                <p>Пример настройки: Казахстан и СНГ с дополнительной оплатой через PayPal.</p>
+                            </div>
+                        </article>
+                        <article class="video-card">
+                            <div class="video-card__media">
+                                <iframe title="USD → RUB + KZT"
+                                    data-youtube="https://www.youtube.com/embed/Rx5nH_5ESp0?si=v06ZajMJQvcqjEL7"
+                                    data-rutube="https://rutube.ru/video/e7fe178cbc8866d3a7d315067d4b7991/"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""
+                                    src="https://www.youtube.com/embed/Rx5nH_5ESp0?si=v06ZajMJQvcqjEL7"></iframe>
+                            </div>
+                            <div class="video-card__body">
+                                <h3>USD → RUB + KZT</h3>
+                                <p>Пример настройки: основная международная валюта с локальными валютами СНГ.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section--alt" id="currencies">
+                <div class="container">
+                    <div class="section__head">
+                        <h2>340 поддерживаемых валют</h2>
+                        <p>Убедитесь что нужная валюта есть в списке, найдите ее по коду, например USD</p>
+                    </div>
+                    <div class="currency">
+                        <div class="currency__controls">
+                            <input id="currency-search" type="search" placeholder="Поиск: USD, EUR, KZT...">
+                            <div class="currency__meta">
+                                <span id="currency-count">0</span> валют
+                            </div>
+                        </div>
+                        <div class="currency__list" id="currency-list" role="list">
+                        </div>
+                        <div class="currency__status" id="currency-status" aria-live="polite"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="instruction">
+                <div class="container">
+                    <div class="section__head">
+                        <h2>Инструкция по установке<br>(прочитать до покупки)</h2>
+                        <p>Оцените свои силы. Продукт работает строго по инструкции.</p>
+                    </div>
+                    <div class="accordion" data-accordion="">
+                        <div class="accordion-item is-open">
+                            <button class="accordion-trigger" type="button">Перед установкой: обязательные
+                                условия</button>
+                            <div class="accordion-panel">
+                                <p>Скрипт мультивалютности подключается через HTML-блок <strong>T123</strong> и работает
+                                    только при наличии корзины <strong>ST100</strong>.</p>
+                                <div class="alert alert--warning">
+                                    <strong>Важно:</strong> не путайте <strong>head</strong> (внутренний &lt;head&gt;
+                                    сайта) и <strong>header</strong> (страница-шапка в Tilda).
+                                    В этой инструкции речь про <strong>header/footer как отдельные страницы</strong> в
+                                    Tilda.
+                                </div>
+                                <ol>
+                                    <li>Скрипт должен быть вставлен в блок <strong>T123</strong> (HTML).</li>
+                                    <li>На странице должна быть корзина <strong>ST100</strong>, либо корзина должна быть
+                                        установлена глобально через <strong>header/footer</strong>.</li>
+                                    <li>Если скрипт/корзина стоят в <strong>header/footer</strong>, убедитесь, что
+                                        header/footer применены к нужной странице (и не отключены).</li>
+                                </ol>
+                                <div class="alert alert--ok">
+                                    <strong>Рекомендация для «чистоты проекта»:</strong> размещайте
+                                    <strong>ST100</strong> (корзину) в том же месте,
+                                    где установлен мультивалютный скрипт (тот же header/footer или та же страница).
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Способ 1 — только на одной странице (для
+                                теста)</button>
+                            <div class="accordion-panel">
+                                <p>Подходит, чтобы проверить настройку, не затрагивая весь сайт.</p>
+                                <h4>Шаги</h4>
+                                <ol>
+                                    <li>Откройте нужную страницу в Tilda.</li>
+                                    <li>Добавьте блок <strong>T123</strong> и вставьте в него сгенерированный код
+                                        мультивалютности.</li>
+                                    <li>Убедитесь, что на этой же странице есть корзина <strong>ST100</strong>:
+                                        <ul>
+                                            <li>либо добавьте блок <strong>ST100</strong> на страницу,</li>
+                                            <li>либо корзина уже подключена глобально через header/footer и эти
+                                                header/footer включены для данной страницы.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Опубликуйте страницу и протестируйте.</li>
+                                </ol>
+                                <div class="alert alert--note">
+                                    Этот способ удобно использовать как «песочницу»: проверили на одной странице — потом
+                                    переносите в глобальный header/footer.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Способ 2 — глобально через Header/Footer
+                                (для всех страниц)</button>
+                            <div class="accordion-panel">
+                                <p>Подходит для большинства проектов: мультивалютность автоматически применится ко всем
+                                    страницам сайта.</p>
+                                <h4>Шаги</h4>
+                                <ol>
+                                    <li>Откройте страницу <strong>Header</strong> или <strong>Footer</strong> в Tilda
+                                        (это отдельные страницы-шаблоны шапки/подвала).</li>
+                                    <li>Добавьте в header/footer блок <strong>T123</strong> и вставьте код
+                                        мультивалютности.</li>
+                                    <li>Проверьте, что корзина <strong>ST100</strong> подключена корректно:
+                                        <ul>
+                                            <li>рекомендуется разместить <strong>ST100</strong> в том же header/footer,
+                                                где находится скрипт.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Убедитесь, что на страницах сайта <strong>не отключены</strong> header/footer (в
+                                        настройках конкретных страниц).</li>
+                                    <li>Опубликуйте сайт.</li>
+                                </ol>
+                                <div class="alert alert--warning">
+                                    Если на какой-то странице в настройках отключены header/footer — код
+                                    мультивалютности (и корзина, если она там) на этой странице работать не будет.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Каталог товаров: Header/Footer для страниц
+                                товаров</button>
+                            <div class="accordion-panel">
+                                <p>Если товары открываются как отдельные страницы, в Tilda могут появиться
+                                    дополнительные страницы: <strong>Header для каталога</strong> и <strong>Footer для
+                                        каталога</strong> (применяются только к карточкам товаров).</p>
+                                <h4>Ситуация А — для каталога используются те же header/footer, что и глобальные</h4>
+                                <p>Если в настройках каталога вы выбрали те же страницы header/footer, что и для всего
+                                    сайта, то контент будет одинаковым: скрипт и корзина (если они там) применятся и к
+                                    сайту, и к страницам товаров.</p>
+                                <div class="alert alert--ok">
+                                    Это самый простой и надежный подход, если товары открываются на отдельной странице:
+                                    назначьте каталогу те же header/footer, что и глобальные — и убедитесь, что включена
+                                    опция открытия товара на отдельной странице.
+                                </div>
+                                <h4>Ситуация Б — для каталога используются другие (отдельные) header/footer</h4>
+                                <p>Если для каталога вы используете отдельные страницы header/footer, то мультивалютный
+                                    код и корзину нужно добавить туда отдельно:</p>
+                                <ul>
+                                    <li>вставьте код мультивалютности в <strong>T123</strong> в header/footer каталога,
+                                    </li>
+                                    <li>если корзина <strong>ST100</strong> стоит в глобальных header/footer —
+                                        продублируйте <strong>ST100</strong> и в header/footer каталога.</li>
+                                </ul>
+                                <div class="alert alert--warning">
+                                    Иначе карточка товара откроется как самостоятельная страница со «своими»
+                                    header/footer без мультивалютного кода — и мультивалютность/корзина может не
+                                    работать.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Внимание: как не допустить двойной загрузки
+                                кода</button>
+                            <div class="accordion-panel">
+                                <p>Есть важный сценарий, когда мультивалютный скрипт и корзина могут быть подключены
+                                    <strong>дважды</strong>, из-за чего возникают баги (двойные переключатели,
+                                    некорректные суммы, странное поведение корзины).</p>
+                                <div class="alert alert--danger">
+                                    <strong>Опасная комбинация:</strong> выбран Header/Footer для каталога товаров, но
+                                    при этом <strong>НЕ включена</strong> галочка
+                                    «Открывать товар на новой странице» (товар открывается как попап). Тогда на странице
+                                    могут одновременно появиться:
+                                    <ul>
+                                        <li>глобальные header/footer (для всего сайта),</li>
+                                        <li>и header/footer каталога товаров.</li>
+                                    </ul>
+                                    В результате код мультивалютности и <strong>ST100</strong> могут подтянуться из двух
+                                    мест.
+                                </div>
+                                <p><strong>Это может случиться в двух случаях:</strong></p>
+                                <ol>
+                                    <li>Глобальные header/footer и header/footer каталога — разные страницы и в обеих
+                                        вставлен код/корзина.</li>
+                                    <li>Глобальные header/footer и header/footer каталога — одни и те же страницы, но
+                                        товар открывается в попапе.</li>
+                                </ol>
+                                <h4>Как правильно (выберите один безопасный вариант)</h4>
+                                <ol>
+                                    <li><strong>Рекомендуемый вариант:</strong> включите галочку «Открывать товар на
+                                        новой странице» и настраивайте header/footer каталога.</li>
+                                    <li>Если нужно открытие товара в попапе, тогда:
+                                        <ul>
+                                            <li>не назначайте отдельные header/footer для каталога <strong>или</strong>
+                                            </li>
+                                            <li>следите, чтобы код мультивалютности и <strong>ST100</strong> были только
+                                                в одном месте.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Быстрый чек-лист «если не работает»</button>
+                            <div class="accordion-panel">
+                                <ul>
+                                    <li>Скрипт вставлен именно в <strong>T123</strong>?</li>
+                                    <li>На странице есть <strong>ST100</strong> (или корзина подключена через
+                                        header/footer)?</li>
+                                    <li>На странице не отключены header/footer?</li>
+                                    <li>Если товары открываются отдельной страницей: скрипт и корзина есть в
+                                        header/footer каталога товаров?</li>
+                                    <li>Если товары открываются попапом: нет ли сценария двойного подключения
+                                        кода/корзины?</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Скриншоты</button>
+                            <div class="accordion-panel">
+                                <div class="screen-grid">
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild6336-3131-4862-b063-323434383331/1_cartAndCode.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild6336-3131-4862-b063-323434383331/1_cartAndCode.png"
+                                            alt="Скриншот 1: T123 и ST100 на странице">
+                                        <span>Скриншот 1. Пример установки “на одной странице”: блок T123 + блок
+                                            ST100.</span>
+                                    </a>
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild3032-3761-4461-a666-326438643738/2_onlyGlobalHF.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild3032-3761-4461-a666-326438643738/2_onlyGlobalHF.png"
+                                            alt="Скриншот 2: Глобальные header/footer">
+                                        <span>Скриншот 2. Где в Tilda находятся страницы глобальных Header и
+                                            Footer.</span>
+                                    </a>
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild3633-6435-4437-a332-316538303163/3_setSettingsHFforCa.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild3633-6435-4437-a332-316538303163/3_setSettingsHFforCa.png"
+                                            alt="Скриншот 3: Настройки каталога">
+                                        <span>Скриншот 3. Настройки header/footer каталога + галочка “Открывать товар на
+                                            новой странице”.</span>
+                                    </a>
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild3133-6136-4837-b865-383238303064/4_globalHFandCatalog.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild3133-6136-4837-b865-383238303064/4_globalHFandCatalog.png"
+                                            alt="Скриншот 4: Global + catalog header/footer">
+                                        <span>Скриншот 4. Одновременно видны global и catalog header/footer.</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section--alt" id="pricing">
+                <div class="container">
+                    <div class="section__head">
+                        <h2>Доступ к конструктору</h2>
+                        <p>Единоразовая оплата — доступ к конструктору на 12 месяцев.</p>
+                    </div>
+                    <div class="pricing">
+                        <div class="pricing__card">
+                            <h3 class="pricing__title">Доступ к конструктору скрипта мультивалютности для корзины сайта
+                                на Tilda</h3>
+                            <div class="price">7 500 ₽</div>
+                            <div class="price__meta">Единоразовая оплата • 12 месяцев доступа</div>
+                            <div class="alert alert--note">Сгенерированный скрипт остаётся у вас и работает после
+                                окончания доступа к личному кабинету.</div>
+                            <ul class="list">
+                                <li>Конструктор генерации скрипта в личном кабинете</li>
+                                <li>Инструкция</li>
+                                <li>Сгенерированный код остаётся у вас (работает без личного кабинета)</li>
+                            </ul>
+                            <div class="divider"></div>
+                            <ul class="list list--negative">
+                                <li>Нет консультации</li>
+                                <li>Нет помощи в установке</li>
+                                <li>Нет установки кода от мастера</li>
+                                <li>Нет доработки под ваши задачи</li>
+                                <li>Нет подключения систем оплат</li>
+                            </ul>
+                            <div class="legal">Сгенерированный код работает в Tilda исключительно по инструкции.</div>
+                            <div class="mini-panel">
+                                <div class="mini-panel__title">Кому НЕ покупать</div>
+                                <ul>
+                                    <li>не готовы читать инструкцию/смотреть видео,</li>
+                                    <li>не имеете опыта установки кода в Tilda,</li>
+                                    <li>не работаете с Tilda профессионально.</li>
+                                </ul>
+                                <div class="mini-panel__note">Пожалуйста, не покупайте доступ. Выберите «Под ключ».
+                                </div>
+                            </div>
+                            <label class="checkbox">
+                                <input type="checkbox" id="podkey-toggle">
+                                Нужна установка под ключ (16 500 ₽)
+                            </label>
+                            <a class="btn btn--primary btn--wide" id="pricing-cta"
+                                data-default-text="Купить доступ (12 месяцев)"
+                                data-default-href="#order:«Доступ к конструктору мультивалютного скрипта для Tilda (12 месяцев)» + инструкция=7500:::image=https://static.tildacdn.com/stor6236-6634-4265-a334-376336303534/f3e7521cdb36b7a3c380a3dbb04fb8f5.png"
+                                data-podkey-text="Установка под ключ" data-podkey-href="#popup:podkey"
+                                href="#order:«Доступ к конструктору мультивалютного скрипта для Tilda (12 месяцев)» + инструкция=...">Купить
+                                доступ (12 месяцев)</a>
+                            <div class="alert alert--danger"><strong>Скрипт НЕ подключает платежные системы в
+                                    Tilda.</strong><span>В стоимость «Под ключ» подключение платежных систем НЕ
+                                    входит.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="cons">
+                <div class="container">
+                    <div class="section__head">
+                        <h2>Какие нюансы использования?</h2>
+                        <p>Обязательно ознакомиться перед покупкой.</p>
+                    </div>
+                    <div class="accordion" data-accordion="">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">1. Резервирование товаров при конвертации
+                                валют</button>
+                            <div class="accordion-panel">
+                                <p>
+                                    Чтобы реализовать мультивалютность, пришлось обойти ограничения Tilda, которые не
+                                    позволяют менять стоимость товара
+                                    при конвертации. Это не официальный плагин, а скрипт. Он работает, но имеет важный
+                                    нюанс для второстепенных валют
+                                    и способов оплат.
+                                </p>
+                                <div class="alert alert--warning">
+                                    При оплате через конвертированные валюты <strong>не передается ID товара в
+                                        Tilda</strong>.
+                                    Из‑за этого товар <strong>не резервируется</strong> и <strong>не вычитается</strong>
+                                    из количества в каталоге.
+                                    На процесс оплаты это не влияет.
+                                </div>
+                                <p>
+                                    Для <strong>основной валюты</strong>, установленной в настройках Tilda, и для
+                                    платежных систем, которые работают с
+                                    этой валютой, резервирование и списание количества товара продолжают работать
+                                    корректно.
+                                </p>
+                                <div class="alert alert--danger">
+                                    Если для вас принципиально резервирование товара при оплате в любой валюте — это
+                                    решение вам не подходит.
+                                    Оплачивая доступ к конструктору, вы подтверждаете, что ознакомились с этим нюансом и
+                                    не будете иметь претензий.
+                                </div>
+                                <p>
+                                    Для заказов, где резервирование не сработало, в списке заказов будет отображаться
+                                    уведомление
+                                    <strong>«Внимание: Продукт не найден»</strong>.
+                                </p>
+                                <div class="screen-grid">
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild6265-6530-4034-b365-313733336236/warningStatus.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild6265-6530-4034-b365-313733336236/warningStatus.png"
+                                            alt="Внимание: Продукт не найден">
+                                        <span>Скриншот: статус «Внимание: Продукт не найден» для заказа в
+                                            конвертированной валюте.</span>
+                                    </a>
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild6664-3330-4264-b566-313639303766/noWarningStatus.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild6664-3330-4264-b566-313639303766/noWarningStatus.png"
+                                            alt="Статус без предупреждения">
+                                        <span>Скриншот: для основной валюты предупреждение не появляется.</span>
+                                    </a>
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild3261-3831-4534-b334-333165313565/NoCuntProduct.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild3261-3831-4534-b334-333165313565/NoCuntProduct.png"
+                                            alt="Количество товара в каталоге">
+                                        <span>Скриншот: где в каталоге настраивается количество товара, которое не будет
+                                            уменьшаться при оплате в конвертированной валюте.</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">2. Наличные и Безналичный расчет для
+                                второстепенных валют</button>
+                            <div class="accordion-panel">
+                                <p>
+                                    Способы оплаты <strong>Наличные</strong> и <strong>Безналичный расчет</strong> не
+                                    имеют фактического процессинга —
+                                    это способы «эмуляции» оплаты (иногда используются для кастомных интеграций,
+                                    например «Тбанк рассрочка»).
+                                </p>
+                                <div class="alert alert--warning">
+                                    Если установить эти способы для <strong>второстепенных конвертируемых
+                                        валют</strong>,
+                                    то в заказах Tilda суммы будут отображаться в <strong>основной валюте
+                                        сайта</strong>, а не в фактической.
+                                    Пользователь в корзине видит правильную валюту — проблема только визуальная в
+                                    админке.
+                                </div>
+                                <p>
+                                    Для ориентира скрипт передает дополнительные параметры <strong>currency</strong> и
+                                    <strong>currency_txt</strong>
+                                    (код и символ валюты). По ним можно понять, в какой валюте был оформлен заказ.
+                                </p>
+                                <div class="screen-grid">
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild3966-3863-4333-b133-323765386161/NoViewCurrensyForZer.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild3966-3863-4333-b133-323765386161/NoViewCurrensyForZer.png"
+                                            alt="Наличные и Безналичный расчет в настройках">
+                                        <span>Скриншот: где находятся способы «Наличные» и «Безналичный расчет».</span>
+                                    </a>
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild3565-3763-4230-b439-373264623534/cashMethod.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild3565-3763-4230-b439-373264623534/cashMethod.png"
+                                            alt="Наличные: отображение заказа">
+                                        <span>Скриншот: заказ с оплатой «Наличные» — суммы в основной валюте, но есть
+                                            параметры с фактической валютой.</span>
+                                    </a>
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild6233-6232-4334-b239-343930323337/beznalichniyMethod.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild6233-6232-4334-b239-343930323337/beznalichniyMethod.png"
+                                            alt="Безналичный расчет: отображение заказа">
+                                        <span>Скриншот: аналогичная ситуация для «Безналичный расчет».</span>
+                                    </a>
+                                </div>
+                                <p>Это не ошибка, а нюанс, который влияет только на визуальное отображение заказов.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">3. «TBank рассрочка» и
+                                мультивалютность</button>
+                            <div class="accordion-panel">
+                                <p>
+                                    «TBank рассрочка» подключается через способ <strong>Безналичный расчет</strong> и
+                                    заменяет стандартную кнопку оплаты
+                                    на фирменную кнопку TBank.
+                                </p>
+                                <div class="alert alert--warning">
+                                    Если использовать рубли для «TBank рассрочка» как <strong>второстепенную
+                                        конвертируемую валюту</strong>,
+                                    конвертация для этого способа работать <strong>не будет</strong>.
+                                </div>
+                                <p>
+                                    Решение: установить <strong>рубли как основную валюту</strong> в настройках Tilda и
+                                    использовать «TBank рассрочка»
+                                    как один из основных способов оплат. Для второстепенных валют (USD, EUR и др.)
+                                    подключите PayPal, Stripe и другие
+                                    системы — при переключении на них в корзине должна появляться стандартная кнопка
+                                    Tilda, а не кнопка TBank.
+                                </p>
+                                <p><strong>Важно:</strong> «TBank рассрочка» не поддерживает промокоды. Это ограничение
+                                    самого метода оплаты, не скрипта.</p>
+                                <div class="screen-grid">
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild6232-3934-4565-b435-393563393036/TbankRassrochka.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild6232-3934-4565-b435-393563393036/TbankRassrochka.png"
+                                            alt="Кнопка TBank рассрочка в корзине">
+                                        <span>Скриншот: фирменная кнопка «TBank рассрочка» в корзине.</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">4. Режим «Оформление заказа в несколько
+                                этапов»</button>
+                            <div class="accordion-panel">
+                                <p>В настройках корзины <strong>ST100</strong> не должна быть включена опция
+                                    <strong>«Оформление заказа в несколько этапов»</strong>.</p>
+                                <div class="alert alert--warning">
+                                    Этот режим меняет внешний вид корзины: покупатель сначала подтверждает список
+                                    товаров,
+                                    а затем заполняет контактные данные на отдельном экране. <strong>В этом режиме
+                                        скрипт мультивалютности не работает.</strong>
+                                </div>
+                                <div class="screen-grid">
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild3737-3037-4262-b231-626436666265/withoutCheckbox.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild3737-3037-4262-b231-626436666265/withoutCheckbox.png"
+                                            alt="Опция оформления заказа в несколько этапов">
+                                        <span>Скриншот: чекбокс «Оформление заказа в несколько этапов» должен быть
+                                            выключен.</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="faq">
+                <div class="container">
+                    <div class="section__head">
+                        <h2>FAQ</h2>
+                        <p>Короткие ответы на самые частые вопросы.</p>
+                    </div>
+                    <div class="accordion" data-accordion="">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Что именно конвертируется?</button>
+                            <div class="accordion-panel">Конвертируются суммы валют при переключении способов оплат в
+                                корзине ST100. Смотрите видео чтобы понять наглядно.</div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Добавляет ли скрипт платёжки?</button>
+                            <div class="accordion-panel">Нет. Платежные системы должны быть подключены заранее.</div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Нужна ли корзина ST100?</button>
+                            <div class="accordion-panel">Да, работа гарантируется только с корзиной ST100.</div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">На какой срок даётся доступ к
+                                конструктору?</button>
+                            <div class="accordion-panel">Доступ к личному кабинету и конструктору — 12 месяцев. При этом
+                                сгенерированный скрипт остаётся у вас и продолжает работать на сайте даже после
+                                окончания доступа. Продление нужно только если захотите заново сгенерировать код или
+                                изменить настройки.</div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Можно ли поставить на 1 страницу?</button>
+                            <div class="accordion-panel">Да, это Способ 1 — для теста или пилота.</div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Возможно ли поставить на весь сайт?</button>
+                            <div class="accordion-panel">Да, это Способ 2 из инструкции. Так же обратите внимание на
+                                пункты Ситуация A и Ситуация Б.</div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Если нужна кастомная логика?</button>
+                            <div class="accordion-panel">Это отдельная услуга — выбирайте «под ключ».</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section--cta" id="final">
+                <div class="container cta">
+                    <div>
+                        <h2>Готовы включить мультивалютность в корзине Tilda?</h2>
+                        <p>Сначала посмотрите видео и инструкцию — потом покупайте доступ.</p>
+                    </div>
+                    <div class="cta__actions">
+                        <a class="btn btn--primary" href="#pricing">Купить доступ</a>
+                        <a class="btn btn--secondary" href="#pricing">Установка под ключ</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+
+        <script>
+            const state = {
+                platform: "youtube",
+                currencies: [],
+                filtered: [],
+            };
+
+            const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+            function setVideoPlatform(platform) {
+                state.platform = platform;
+                $$(".toggle__btn").forEach((btn) => {
+                    btn.classList.toggle("is-active", btn.dataset.platform === platform);
+                });
+
+                $$("iframe[data-youtube][data-rutube]").forEach((frame) => {
+                    const raw = platform === "youtube" ? frame.dataset.youtube : frame.dataset.rutube;
+                    const src = platform === "youtube" ? normalizeYouTube(raw) : normalizeRutube(raw);
+                    if (src && frame.src !== src) {
+                        frame.src = src;
+                    }
+                });
+            }
+
+            function normalizeYouTube(url) {
+                if (!url) return "";
+                try {
+                    const u = new URL(url, window.location.href);
+                    const host = u.hostname.replace("www.", "");
+                    if (host === "youtu.be") {
+                        const id = u.pathname.replace("/", "");
+                        if (id) return `https://www.youtube.com/embed/${id}${u.search ? u.search : ""}`;
+                    }
+                    if (host === "youtube.com") {
+                        if (u.pathname.startsWith("/embed/")) return u.toString();
+                        if (u.pathname.startsWith("/shorts/")) {
+                            const id = u.pathname.split("/")[2];
+                            if (id) return `https://www.youtube.com/embed/${id}${u.search ? u.search : ""}`;
+                        }
+                        const id = u.searchParams.get("v");
+                        if (id) return `https://www.youtube.com/embed/${id}${u.search ? u.search : ""}`;
+                    }
+                } catch (e) { }
+                return url;
+            }
+
+            function normalizeRutube(url) {
+                if (!url) return "";
+                try {
+                    const u = new URL(url, window.location.href);
+                    if (u.pathname.startsWith("/play/embed/")) return u.toString();
+                    const match = u.pathname.match(/\/video\/([a-z0-9]+)/i);
+                    if (match && match[1]) {
+                        return `https://rutube.ru/play/embed/${match[1]}`;
+                    }
+                } catch (e) { }
+                return url;
+            }
+
+            function setupVideoToggle() {
+                const buttons = $$(".toggle__btn");
+                if (!buttons.length) return;
+
+                buttons.forEach((btn) => {
+                    btn.addEventListener("click", () => setVideoPlatform(btn.dataset.platform));
+                });
+
+                setVideoPlatform(state.platform);
+            }
+
+            function renderCurrencyList(list) {
+                const listEl = document.getElementById("currency-list");
+                if (!listEl) return;
+
+                listEl.innerHTML = list
+                    .map(
+                        ([code, name]) => `
+        <div class="currency-row" role="listitem" data-code="${code.toUpperCase()}">
+          <span class="currency-code">${code.toUpperCase()}</span>
+          <span class="currency-name">${name}</span>
+        </div>
+      `
+                    )
+                    .join("");
+            }
+
+            function updateCurrencyMeta(dateValue) {
+                const countEl = document.getElementById("currency-count");
+                const dateEl = document.getElementById("currency-date");
+                if (countEl) countEl.textContent = String(state.filtered.length || state.currencies.length || 0);
+                if (dateEl) dateEl.textContent = dateValue || "—";
+            }
+
+            function setupCurrencySearch() {
+                const input = document.getElementById("currency-search");
+                if (!input) return;
+
+                input.addEventListener("input", (event) => {
+                    const value = event.target.value.trim().toLowerCase();
+                    if (!value) {
+                        state.filtered = state.currencies;
+                    } else {
+                        state.filtered = state.currencies.filter(([code, name]) => {
+                            return code.toLowerCase().includes(value) || name.toLowerCase().includes(value);
+                        });
+                    }
+                    renderCurrencyList(state.filtered);
+                    updateCurrencyMeta();
+                });
+            }
+
+            function setupCurrencyCopy() {
+                const listEl = document.getElementById("currency-list");
+                const statusEl = document.getElementById("currency-status");
+                if (!listEl) return;
+
+                listEl.addEventListener("click", async (event) => {
+                    const row = event.target.closest(".currency-row");
+                    if (!row) return;
+                    const code = row.dataset.code;
+                    try {
+                        await navigator.clipboard.writeText(code);
+                        if (statusEl) statusEl.textContent = `Код ${code} скопирован.`;
+                    } catch (err) {
+                        const temp = document.createElement("input");
+                        temp.value = code;
+                        document.body.appendChild(temp);
+                        temp.select();
+                        document.execCommand("copy");
+                        temp.remove();
+                        if (statusEl) statusEl.textContent = `Код ${code} скопирован.`;
+                    }
+                });
+            }
+
+            async function loadCurrencies() {
+                const url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json";
+                try {
+                    const response = await fetch(url, { cache: "no-store" });
+                    const data = await response.json();
+                    const dateValue = data.date || data.updated || null;
+                    const entries = Object.entries(data).filter(([key]) => key !== "date" && key !== "updated");
+                    entries.sort((a, b) => a[0].localeCompare(b[0]));
+
+                    state.currencies = entries;
+                    state.filtered = entries;
+                    renderCurrencyList(entries);
+                    updateCurrencyMeta(dateValue);
+                } catch (error) {
+                    const statusEl = document.getElementById("currency-status");
+                    if (statusEl) statusEl.textContent = "Не удалось загрузить список валют. Попробуйте позже.";
+                }
+            }
+
+            function setupPricingToggle() {
+                const toggle = document.getElementById("podkey-toggle");
+                const cta = document.getElementById("pricing-cta");
+                if (!toggle || !cta) return;
+
+                const update = () => {
+                    if (toggle.checked) {
+                        cta.textContent = cta.dataset.podkeyText;
+                        cta.setAttribute("href", cta.dataset.podkeyHref);
+                    } else {
+                        cta.textContent = cta.dataset.defaultText;
+                        cta.setAttribute("href", cta.dataset.defaultHref);
+                    }
+                };
+
+                toggle.addEventListener("change", update);
+                update();
+            }
+
+            function setupAccordion() {
+                $$("[data-accordion]").forEach((accordion) => {
+                    const mode = accordion.dataset.accordion;
+                    accordion.querySelectorAll(".accordion-trigger").forEach((trigger) => {
+                        trigger.addEventListener("click", () => {
+                            const item = trigger.closest(".accordion-item");
+                            if (!item) return;
+                            if (mode === "tabs") {
+                                accordion.querySelectorAll(".accordion-item").forEach((el) => {
+                                    el.classList.toggle("is-open", el === item);
+                                });
+                            } else {
+                                item.classList.toggle("is-open");
+                            }
+                        });
+                    });
+                });
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                setupVideoToggle();
+                setupCurrencySearch();
+                setupCurrencyCopy();
+                loadCurrencies();
+                setupPricingToggle();
+                setupAccordion();
+            });
+
+        </script>
+
+
+
+
+    </div>
+</body>
+
+</html>
