@@ -1244,7 +1244,8 @@
                         </div>
                         <div class="alert alert--note">
                             <strong>Работает с уже подключенными платежными системами в Tilda.</strong>
-                            <span>Скрипт отвечает за конвертацию сумм в корзине ST100, а не за подключение платёжек.</span>
+                            <span>Скрипт отвечает за конвертацию сумм в корзине ST100, а не за подключение
+                                платёжек.</span>
                         </div>
                     </div>
                     <div class="hero__visual">
@@ -1606,7 +1607,8 @@
                             <div class="accordion-panel">
                                 <p>Есть важный сценарий, когда мультивалютный скрипт и корзина могут быть подключены
                                     <strong>дважды</strong>, из-за чего возникают баги (двойные переключатели,
-                                    некорректные суммы, странное поведение корзины).</p>
+                                    некорректные суммы, странное поведение корзины).
+                                </p>
                                 <div class="alert alert--danger">
                                     <strong>Опасная комбинация:</strong> выбран Header/Footer для каталога товаров, но
                                     при этом <strong>НЕ включена</strong> галочка
@@ -1694,6 +1696,42 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Личный кабинет Tilda: порог суммы для
+                                группы при мультивалютности</button>
+                            <div class="accordion-panel">
+                                <p>Если после оплаты вы добавляете клиента в группу (доступ к курсам/цифровому
+                                    продукту), важно правильно задать минимальную сумму для добавления.</p>
+                                <h4>Проблема</h4>
+                                <p>Пример: товар стоит 12 000 ₽, в другой валюте это около 90 $. Если в группе
+                                    поставить жёсткий порог 90, то из-за колебаний курса часть корректно оплативших
+                                    клиентов может не попасть в группу.</p>
+                                <h4>Как настроить</h4>
+                                <ol>
+                                    <li>Ориентируйтесь на минимальное значение среди используемых валют.</li>
+                                    <li>Ставьте порог с запасом ниже этой суммы. Например, не 90, а 80.</li>
+                                    <li>Проверьте на тестовых оплатах в разных валютах.</li>
+                                </ol>
+                                <p>В настройке группы валюта отдельно не указывается, поэтому выбирается универсальное
+                                    пороговое значение: все оплаты выше заданного порога попадут в группу.</p>
+                                <h4>Вопрос безопасности</h4>
+                                <div class="alert alert--note">
+                                    Это не «дыра» для мошенников: порог заранее неизвестен, подбирать его сложно,
+                                    количество попыток ограничивает сама Tilda. Даже в редком случае подбора остаются
+                                    данные платежа и плательщика.
+                                </div>
+                                <div class="screen-grid">
+                                    <a class="screen"
+                                        href="https://static.tildacdn.com/tild3531-6536-4234-a637-303732656638/__2026-02-28__012142.png"
+                                        target="_blank" rel="noopener">
+                                        <img src="https://static.tildacdn.com/tild3531-6536-4234-a637-303732656638/__2026-02-28__012142.png"
+                                            alt="Настройка порога суммы для добавления в группу в личном кабинете Tilda">
+                                        <span>Скриншот: где задаётся минимальная сумма для добавления пользователя в
+                                            группу.</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1718,13 +1756,15 @@
                                 <button class="plan-switch__btn" type="button" data-plan="podkey" aria-pressed="false">
                                     <span class="plan-switch__badge">Тариф</span>
                                     <span class="plan-switch__name">Под ключ</span>
-                                    <small><span class="plan-switch__price">16 500 ₽</span><span class="plan-switch__term">до
+                                    <small><span class="plan-switch__price">16 500 ₽</span><span
+                                            class="plan-switch__term">до
                                             3 дней</span></small>
                                 </button>
                                 <button class="plan-switch__btn" type="button" data-plan="custom" aria-pressed="false">
                                     <span class="plan-switch__badge">Тариф</span>
                                     <span class="plan-switch__name">Кастом</span>
-                                    <small><span class="plan-switch__price">35 500 ₽</span><span class="plan-switch__term">до
+                                    <small><span class="plan-switch__price">35 500 ₽</span><span
+                                            class="plan-switch__term">до
                                             7 дней</span></small>
                                 </button>
                             </div>
@@ -1742,7 +1782,7 @@
                                 <ul class="list" id="pricing-includes">
                                     <li>Конструктор генерации скрипта в личном кабинете</li>
                                     <li>Инструкция + видео по установке</li>
-                                    <li>Ответы на вопросы по установке: до 3 коротких в течение 7 дней</li>
+                                    <li>Ответы на вопросы по установке: до 3 вопросов в течение 7 дней</li>
                                     <li>Сгенерированный код остаётся у вас</li>
                                 </ul>
                             </div>
@@ -1760,8 +1800,7 @@
                             </div>
                             <div class="legal" id="pricing-legal">Сгенерированный код работает в Tilda по инструкции.
                             </div>
-                            <a class="btn btn--primary btn--wide" id="pricing-cta"
-                                data-base-text="Купить тариф «База»"
+                            <a class="btn btn--primary btn--wide" id="pricing-cta" data-base-text="Купить тариф «База»"
                                 data-base-href="#order:«Доступ к конструктору мультивалютного скрипта для Tilda (12 месяцев)» + инструкция=7500:::image=https://static.tildacdn.com/stor6236-6634-4265-a334-376336303534/f3e7521cdb36b7a3c380a3dbb04fb8f5.png"
                                 data-podkey-text="Выбрать тариф «Под ключ»" data-podkey-href="#popup:podkey"
                                 data-custom-text="Заказать кастомизацию" data-custom-href="#popup:custom"
@@ -1806,7 +1845,8 @@
                                 </p>
                                 <h4>Как обойти</h4>
                                 <div class="alert alert--note">
-                                    Если вам нужно строгое резервирование в любой валюте, используйте основную валюту для
+                                    Если вам нужно строгое резервирование в любой валюте, используйте основную валюту
+                                    для
                                     критичных товаров или выбирайте отдельную кастомную реализацию под ваш процесс.
                                 </div>
                                 <p>
@@ -1853,7 +1893,7 @@
                                     Если установить эти способы для <strong>второстепенных конвертируемых
                                         валют</strong>,
                                     то в заказах Tilda суммы будут отображаться в <strong>основной валюте
-                                    сайта</strong>, а не в фактической.
+                                        сайта</strong>, а не в фактической.
                                     Пользователь в корзине видит правильную валюту — проблема только визуальная в
                                     админке.
                                 </div>
@@ -1896,7 +1936,8 @@
                             <div class="accordion-panel">
                                 <h4>Когда важно</h4>
                                 <p>Если в проекте используется «TBank рассрочка» через способ
-                                    <strong>Безналичный расчет</strong>.</p>
+                                    <strong>Безналичный расчет</strong>.
+                                </p>
                                 <h4>Что происходит</h4>
                                 <div class="alert alert--warning">
                                     Если использовать рубли для «TBank рассрочка» как <strong>второстепенную
@@ -1980,16 +2021,18 @@
                         </div>
                         <div class="accordion-item">
                             <button class="accordion-trigger" type="button">Что входит в базовый Q&A?</button>
-                            <div class="accordion-panel">В базовом формате включены ответы на 3 коротких по
+                            <div class="accordion-panel">В базовом формате включены ответы на 3 вопроса по
                                 установке в течение 7 дней после покупки. Без созвонов и без доработок кода.</div>
                         </div>
                         <div class="accordion-item">
                             <button class="accordion-trigger" type="button">Что не входит даже в «Под ключ»?</button>
-                            <div class="accordion-panel">Подключение платежных систем в кабинете Tilda и разработка новой
+                            <div class="accordion-panel">Подключение платежных систем в кабинете Tilda и разработка
+                                новой
                                 кастомной логики оплаты. Это отдельные услуги.</div>
                         </div>
                         <div class="accordion-item">
-                            <button class="accordion-trigger" type="button">Сколько времени занимает «Под ключ»?</button>
+                            <button class="accordion-trigger" type="button">Сколько времени занимает «Под
+                                ключ»?</button>
                             <div class="accordion-panel">Обычно 1-3 рабочих дня после получения доступов и данных по
                                 проекту. Срок зависит от структуры сайта и количества сценариев оплаты.</div>
                         </div>
@@ -2009,6 +2052,12 @@
                             <button class="accordion-trigger" type="button">Возможно ли поставить на весь сайт?</button>
                             <div class="accordion-panel">Да, это Способ 2 из инструкции. Так же обратите внимание на
                                 пункты Ситуация A и Ситуация Б.</div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" type="button">Можно ли настроить порог суммы для групп
+                                при мультивалютности?</button>
+                            <div class="accordion-panel">Да. Смотрите в инструкции пункт «Личный кабинет Tilda: порог
+                                суммы для группы при мультивалютности».</div>
                         </div>
                         <div class="accordion-item">
                             <button class="accordion-trigger" type="button">Если нужна кастомная логика?</button>
