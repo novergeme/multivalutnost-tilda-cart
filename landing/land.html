@@ -843,6 +843,23 @@
             gap: 28px;
         }
 
+        .mcg-landing #instruction .setup-alert {
+            margin-top: 12px !important;
+        }
+
+        .mcg-landing #instruction .setup-steps>li+li {
+            margin-top: 14px;
+        }
+
+        .mcg-landing #instruction .setup-steps .screen-grid {
+            margin-top: 14px;
+            margin-bottom: 14px;
+        }
+
+        .mcg-landing #instruction .setup-steps>li:last-child .screen-grid {
+            margin-bottom: 0;
+        }
+
         .mcg-landing .screen {
             background: #ffffff;
             border-radius: 14px;
@@ -1494,26 +1511,91 @@
                             <button class="accordion-trigger" type="button">Перед установкой: обязательные
                                 условия</button>
                             <div class="accordion-panel">
-                                <p>Скрипт мультивалютности подключается через HTML-блок <strong>T123</strong> и работает
-                                    только при наличии корзины <strong>ST100</strong>.</p>
-                                <div class="alert alert--warning">
-                                    <strong>Важно:</strong> не путайте <strong>head</strong> (внутренний &lt;head&gt;
-                                    сайта) и <strong>header</strong> (страница-шапка в Tilda).
-                                    В этой инструкции речь про <strong>header/footer как отдельные страницы</strong> в
-                                    Tilda.
-                                </div>
+                                <p>Перед установкой сначала проверьте обязательные настройки платежных систем в Tilda,
+                                    затем подключайте скрипт.</p>
                                 <ol>
-                                    <li>Скрипт должен быть вставлен в блок <strong>T123</strong> (HTML).</li>
-                                    <li>На странице должна быть корзина <strong>ST100</strong>, либо корзина должна быть
-                                        установлена глобально через <strong>header/footer</strong>.</li>
-                                    <li>Если скрипт/корзина стоят в <strong>header/footer</strong>, убедитесь, что
-                                        header/footer применены к нужной странице (и не отключены).</li>
+                                    <li>
+                                        <strong>Сначала настройте уровни проверок в Tilda:</strong>
+                                        <div class="alert alert--danger setup-alert">
+                                            <strong>ВНИМАНИЕ! Без этих настроек не будет работать переход на страницы
+                                                платежных систем.</strong>
+                                        </div>
+                                        <ol class="setup-steps">
+                                            <li>
+                                                Откройте: <strong>Настройки сайта → Платежные системы</strong>.
+                                                <div class="screen-grid">
+                                                    <a class="screen"
+                                                        href="https://static.tildacdn.com/tild6335-3031-4137-a635-376130393061/1PlateshnieSystemi.png"
+                                                        target="_blank" rel="noopener">
+                                                        <img src="https://static.tildacdn.com/tild6335-3031-4137-a635-376130393061/1PlateshnieSystemi.png"
+                                                            alt="Скриншот 1: раздел Платежные системы в настройках сайта Tilda">
+                                                        <span>Скриншот 1. Откройте раздел «Платежные системы» в
+                                                            настройках сайта.</span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                Прокрутите до блока <strong>«Общие настройки для платежных систем»</strong>
+                                                и нажмите <strong>«Настроить»</strong>.
+                                                <div class="screen-grid">
+                                                    <a class="screen"
+                                                        href="https://static.tildacdn.com/tild6130-6539-4261-b934-353166633839/2shagObshNastrPlsys.png"
+                                                        target="_blank" rel="noopener">
+                                                        <img src="https://static.tildacdn.com/tild6130-6539-4261-b934-353166633839/2shagObshNastrPlsys.png"
+                                                            alt="Скриншот 2: общие настройки для платежных систем и кнопка Настроить">
+                                                        <span>Скриншот 2. Блок «Общие настройки для платежных систем» и
+                                                            кнопка «Настроить».</span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                            <li>На странице настроек установите:
+                                                <ul>
+                                                    <li><strong>Уровень проверки товаров из блоков перед переходом к
+                                                            оплате</strong> —
+                                                        <strong>«Разрешать продавать товар без проверок»</strong>.</li>
+                                                    <li><strong>Уровень проверки цены доставки</strong> —
+                                                        <strong>«Не проверять»</strong>.</li>
+                                                    <li><strong>Уровень проверки скидки</strong> —
+                                                        <strong>«Не проверять»</strong>.</li>
+                                                </ul>
+                                                <div class="screen-grid">
+                                                    <a class="screen"
+                                                        href="https://static.tildacdn.com/tild3635-3231-4435-a336-633364653064/3ustanovkaSettings.png"
+                                                        target="_blank" rel="noopener">
+                                                        <img src="https://static.tildacdn.com/tild3635-3231-4435-a336-633364653064/3ustanovkaSettings.png"
+                                                            alt="Скриншот 3: установка уровней проверки товаров, доставки и скидки">
+                                                        <span>Скриншот 3. Установите нужные уровни проверки товаров,
+                                                            доставки и скидки.</span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                        <p><strong>Скрипт мультивалютности подключается через HTML-блок
+                                                T123 и работает только при наличии корзины ST100.</strong></p>
+                                        <div class="alert alert--warning">
+                                            <strong>Важно:</strong> не путайте <strong>head</strong> (внутренний
+                                            &lt;head&gt; сайта) и <strong>header</strong> (страница-шапка в Tilda).
+                                            В этой инструкции речь про <strong>header/footer как отдельные
+                                                страницы</strong> в Tilda.
+                                        </div>
+                                        <ol>
+                                            <li>Скрипт должен быть вставлен в блок <strong>T123</strong> (HTML).</li>
+                                            <li>На странице должна быть корзина <strong>ST100</strong>, либо корзина
+                                                должна быть установлена глобально через
+                                                <strong>header/footer</strong>.</li>
+                                            <li>Если скрипт/корзина стоят в <strong>header/footer</strong>, убедитесь,
+                                                что header/footer применены к нужной странице (и не отключены).</li>
+                                        </ol>
+                                        <div class="alert alert--ok">
+                                            <strong>Рекомендация для «чистоты проекта»:</strong> размещайте
+                                            <strong>ST100</strong> (корзину) в том же месте,
+                                            где установлен мультивалютный скрипт (тот же header/footer или та же
+                                            страница).
+                                        </div>
+                                    </li>
                                 </ol>
-                                <div class="alert alert--ok">
-                                    <strong>Рекомендация для «чистоты проекта»:</strong> размещайте
-                                    <strong>ST100</strong> (корзину) в том же месте,
-                                    где установлен мультивалютный скрипт (тот же header/footer или та же страница).
-                                </div>
                             </div>
                         </div>
                         <div class="accordion-item">
@@ -1647,6 +1729,7 @@
                             <button class="accordion-trigger" type="button">Быстрый чек-лист «если не работает»</button>
                             <div class="accordion-panel">
                                 <ul>
+                                    <li>Настроили уровни проверок в Tilda?</li>
                                     <li>Скрипт вставлен именно в <strong>T123</strong>?</li>
                                     <li>На странице есть <strong>ST100</strong> (или корзина подключена через
                                         header/footer)?</li>
